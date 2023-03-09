@@ -1,0 +1,23 @@
+.Header{
+    height: 50px;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+}
+.Logo{
+    font-size: 20px;
+    font-weight: 900;
+}
+.HeaderContainer{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Buttons{
+    margin-left: 20px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}

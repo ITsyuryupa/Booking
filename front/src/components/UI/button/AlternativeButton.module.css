@@ -1,0 +1,9 @@
+.aBtn{
+    margin-top: 0px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #ffffff;
+    border: 0px solid gray;
+    color: #000;
+    padding: 10px 20px;
+}
