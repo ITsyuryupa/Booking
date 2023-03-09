@@ -27,14 +27,17 @@ import com.today.here.booking.repository.UserRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
-    @PostMapping("/User/Registration")
+    @Autowired
+    UserRepository userRepository;
+
+    @PostMapping("/registration")
     public ResponseEntity<User> createTutorial(@RequestBody User user) {
         try {
-            User _user = UserRepository
-                    .save(new User(user.getId(), user.getFullName(), user.getPhone(), user.getEmail(), user.getPassword()));
+            User _user = userRepository
+                    .save(new User(user.getFullName(), user.getPhone(), user.getEmail(), user.getPassword()));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
