@@ -34,7 +34,7 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/registration")
-    public ResponseEntity<User> createTutorial(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User _user = userRepository
                     .save(new User(user.getFullName(), user.getPhone(), user.getEmail(), user.getPassword()));
