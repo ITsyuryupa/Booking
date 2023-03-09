@@ -17,8 +17,29 @@ public class User {
     private String phone;
 
     @Column(name = "email")
-    private boolean email;
+    private String email;
 
     @Column(name = "password")
-    private boolean password;
+    private String password;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
 }
