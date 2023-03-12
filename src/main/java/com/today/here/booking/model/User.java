@@ -13,6 +13,7 @@ public class User {
     @Column(name = "fullName")
     private String fullName;
 
+
     @Column(name = "phone")
     private String phone;
 

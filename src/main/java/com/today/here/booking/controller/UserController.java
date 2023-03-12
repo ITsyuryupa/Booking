@@ -33,14 +33,68 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/registration")
+    @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
-            User _user = userRepository
-                    .save(new User(user.getFullName(), user.getPhone(), user.getEmail(), user.getPassword()));
-            return new ResponseEntity<>(_user, HttpStatus.CREATED);
+            List<User> users = userRepository.findByPhone(user.getPhone());
+            if (users.isEmpty()) {
+                User _user = userRepository
+                        .save(new User(user.getFullName(), user.getPhone(), user.getEmail(), user.getPassword()));
+                return new ResponseEntity<>(_user, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    /*
+    @GetMapping("/tutorials/{id}")
+    public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
+        Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
+
+        if (tutorialData.isPresent()) {
+            return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/tutorials/published")
+    public ResponseEntity<List<Tutorial>> findByPublished() {
+        try {
+            List<Tutorial> tutorials = tutorialRepository.findByPublished(true);
+
+            if (tutorials.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(tutorials, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+     */
+
+    @GetMapping("/login/{phone}/{password}")
+    public ResponseEntity<List<User>> userLogin(@PathVariable("phone") String phone, @PathVariable("password") String password) {
+        try {
+            List<User> users = userRepository.findByPhone(phone);
+
+            if (users.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else if (users.get(0).getPassword() == password) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
+
+
 }
