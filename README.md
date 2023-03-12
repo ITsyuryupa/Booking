@@ -2,4 +2,4 @@
 
 ## Routing
 1)Регистрация пользователя
-/api/registration 
+api/user/create
