@@ -13,7 +13,6 @@ export const registration = async (phone, email, fullname,password) => {
         alert(e.response.data.message)
     }
 }
-
 export const login =  (phone, password) => {
     return async dispatch => {
         try {
@@ -22,10 +21,20 @@ export const login =  (phone, password) => {
                 password
             })
             dispatch(setUser(response.data.user))
+            localStorage.setItem('user', response.data.user)
         } catch (e) {
             alert(e.response.data.message)
         }
     }
 }
 
-
+export const auth =  () => {
+    return async dispatch => {
+        try {
+            dispatch(localStorage.getItem('user'))
+        } catch (e) {
+            alert(e.response.data.message)
+            localStorage.removeItem('user')
+        }
+    }
+}

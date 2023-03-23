@@ -20,7 +20,6 @@ const Login = () => {
     }
     return (
         <div className="regist">
-            <div>SOSI</div>
             <div className="login-form">
                 <div className="input-container">
                     <label>Номер телефона </label>
@@ -31,12 +30,12 @@ const Login = () => {
                     <MyInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль" />
                 </div>
                 <div className="button-container">
-                    <MyButton onClick={() => login(phone, password) && userReducer}>Вход</MyButton>
+                    <MyButton onClick={() => dispatch(login(phone, password)) }>Вход</MyButton>
                 </div>
                 <div className="button-container">
                     <MyButton  onClick={handleClick}>Регистрация</MyButton>
                 </div>
-                {isAuth  && <div>Вошли</div>}
+                {isAuth  && <div>user</div>}
             </div>
         </div>
     );
