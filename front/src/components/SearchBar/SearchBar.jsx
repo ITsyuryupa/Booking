@@ -1,59 +1,41 @@
 import React, {useState} from 'react';
 import classes from "./SearchBar.css"
-import {useNavigate} from "react-router-dom";
+import MyButton from "../UI/button/MyButton";
+import DatePicker, {registerLocale} from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
+import ru from 'date-fns/locale/ru';
+import MyInput from "../UI/MyInput/MyInput";
+registerLocale('ru', ru)
+
 const SearchBar = () => {
-    const [destination, setDestination] = useState("");
-    const [openDate, setOpenDate] = useState(false);
-    const [date, setDate] = useState([
-        {
-            startDate: new Date(),
-            endDate: new Date(),
-            key: "selection",
-        },
-    ]);
-    const [openOptions, setOpenOptions] = useState(false);
-    const [options, setOptions] = useState({
-        adult: 1,
-        children: 0,
-        room: 1,
-    });
-    const navigate = useNavigate();
-
-    const handleOption = (name, operation) => {
-        setOptions((prev) => {
-            return {
-                ...prev,
-                [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
-            };
-        });
-    };
-
-    const handleSearch = () => {
-        navigate("/hotels", { state: { destination, date, options } });
-    };
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [name, setName] = useState(null);
     return (
-        <div className={classes.SearchBar}>
-            <div className={classes.SearchContainer}>
-                <div className={classes.SearchNavigate}>
-                    <div className={classes.SearchItem}>
-                        <input
-                            type="text"
-                            placeholder="Куда вы хотите отправится?"
-                            className={classes.SearchInput}
-                        />
-                    </div>
-                    <div className={classes.SearchItem}>
-                        <span className={classes.SearchNavegateText}>Дата заезда</span>
-                    </div>
-                    <div className={classes.SearchItem}>
-                        <span className={classes.SearchNavegateText}>Дата выезда</span>
-                    </div>
-                    <div className={classes.SearchItem}>
-                        <span className={classes.SearchNavegateText}>1 взрослый 0 детей</span>
-                    </div>
+            <div>
+                <div>
+                    <MyInput value={name} setValue={setName} type="text" placeholder="Курорт, город, адрес"/>
+                </div>
+                <div className={classes.SearchBar}>
+                    <DatePicker selected={startDate}
+                    onChange={date=>setStartDate(date)}
+                    dateFormat='dd/MM/yyyy'
+                    locale="ru"
+                    placeholderText="Дата заезда"
+                    />
+                </div>
+                <div>
+                    <DatePicker selected={endDate}
+                                onChange={date=>setEndDate(date)}
+                                dateFormat='dd/MM/yyyy'
+                                locale="ru"
+                                placeholderText="Дата выезда"
+                    />
+                </div>
+                <div>
+                    <MyButton>Найти</MyButton>
                 </div>
             </div>
-        </div>
     );
 };
 

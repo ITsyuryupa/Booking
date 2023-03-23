@@ -1,8 +1,8 @@
 import Admin from "./pages/Admin";
 import {ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "./utils/consts";
-import Login from "./pages/Login";
+import Login from "./pages/Auth/Login/Login";
 import Home from "./pages/Home/Home";
-import Registration from "./pages/Auth/Registration";
+import Registration from "./pages/Auth/Registration/Registration";
 
 export const authRoutes = [
     {
