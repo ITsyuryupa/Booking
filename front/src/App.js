@@ -2,9 +2,10 @@
 import './App.css';
 import AppRouter from "./components/AppRouter";
 import {BrowserRouter} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {auth} from "./actions/auth";
+import {store} from "./reducers";
 
 
 function App() {
@@ -12,9 +13,11 @@ function App() {
     const dispatch = useDispatch()
 
     return (
-      <BrowserRouter>
-          <AppRouter />
-      </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+              <AppRouter />
+          </BrowserRouter>
+        </Provider>
   );
 }
 
