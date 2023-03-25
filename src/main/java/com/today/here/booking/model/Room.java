@@ -3,6 +3,9 @@ package com.today.here.booking.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "rooms")
 public class Room {
@@ -23,6 +26,9 @@ public class Room {
     @JoinColumn(name = "hotel_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Hotel hotel;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private Set<Reservation> reservations = new HashSet<>();
 
     public Room() {
 
