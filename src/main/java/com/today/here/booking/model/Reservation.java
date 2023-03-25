@@ -3,6 +3,7 @@ package com.today.here.booking.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,11 +16,11 @@ public class Reservation {
     private long id;
 
     @Column(name = "dateIn")
-    private String dateIn;
+    private LocalDate dateIn;
 
 
     @Column(name = "dateOut")
-    private String dateOut;
+    private LocalDate dateOut;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "room_id")
@@ -30,21 +31,26 @@ public class Reservation {
 
     }
 
-    public Reservation(String dateIn, String dateOut) {
+    public Reservation(LocalDate dateIn, LocalDate dateOut) {
         this.dateIn = dateIn;
         this.dateOut = dateOut;
+    }
 
+    public Reservation(LocalDate dateIn, LocalDate dateOut, Room room) {
+        this.dateIn = dateIn;
+        this.dateOut = dateOut;
+        this.room = room;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getDateIn() {
+    public LocalDate getDateIn() {
         return dateIn;
     }
 
-    public String getDateOut() {
+    public LocalDate getDateOut() {
         return dateOut;
     }
 
