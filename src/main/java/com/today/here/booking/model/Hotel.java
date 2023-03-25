@@ -32,20 +32,24 @@ public class Hotel {
     @Lob
     private String description;
 
-    @OneToMany(mappedBy = "rooms", cascade = CascadeType.ALL)
+    @Column(name = "email")
+    private String email;
+
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private Set<Room> rooms = new HashSet<>();
 
     public Hotel() {
 
     }
 
-    public Hotel(String name, String country, String city, String street, Integer houseNumber, String description) {
+    public Hotel(String name, String country, String city, String street, Integer houseNumber, String description, String email) {
         this.name = name;
         this.country = country;
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
         this.description = description;
+        this.email = email;
     }
 
     public long getId() {
@@ -76,5 +80,8 @@ public class Hotel {
         return description;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
 }
