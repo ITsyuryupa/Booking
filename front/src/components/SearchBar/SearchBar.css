@@ -1,9 +1,37 @@
-.SearchBar{
+.header {
     display: flex;
-    justify-self: center;
+    justify-content: center;
+    position: relative;
 }
-.SearchContainer{
+.headerContainer {
     width: 100%;
     max-width: 1024px;
+    margin: 10px 0px 0px 0px;
 }
+.searchHeader{
+    height: 50px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 0px;
+    border-radius: 5px;
+    position: absolute;
+    width: 100%;
+    max-width: 1024px;
+    position: relative;
+}
+.searchContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.searchInput{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.searchText{
 
+}
