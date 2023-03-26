@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,43 +32,52 @@ public class HotelController {
     @Autowired
     RoomRepository roomRepository;
     @GetMapping("/freehotel")
-    public ResponseEntity<List<Hotel>> getAllHotelFreeBetweenDate(@RequestBody FindHotel findHotel) {
+    public ResponseEntity<?> getAllHotelFreeBetweenDate(@RequestBody FindHotel findHotel) {
         try {
             List<Room> rooms = roomRepository.findAll();
             List<Reservation> reservations = reservationRepository.findAll();
 
             if (rooms.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.OK);
+            } else if (findHotel.getDateIn().isAfter(findHotel.getDateOut())) {
+                return new ResponseEntity<>("DataIn after dateOut", HttpStatus.BAD_REQUEST);
             } else {
                 LocalDate dateIn = findHotel.getDateIn();
                 LocalDate dateOut = findHotel.getDateOut();
                 // find all appropriate rooms
-                for (int i = 0; i < reservations.size(); i++) {
-                    LocalDate reservDateIn = reservations.get(i).getDateIn();
-                    LocalDate reservDateOut = reservations.get(i).getDateOut();
+                for (Reservation reservation : reservations) {
+                    LocalDate reservDateIn = reservation.getDateIn();
+                    LocalDate reservDateOut = reservation.getDateOut();
                     if (dateIn.isAfter(reservDateIn) && dateIn.isBefore(reservDateOut)) {
-                        rooms.remove(reservations.get(i).getRoom());
+                        rooms.remove(reservation.getRoom());
 
                     } else if (dateOut.isAfter(reservDateIn) && dateOut.isBefore(reservDateOut)) {
-                        rooms.remove(reservations.get(i).getRoom());
+                        rooms.remove(reservation.getRoom());
 
-                    } else if(reservDateOut.isAfter(dateIn) && reservDateOut.isBefore(dateOut)) {
-                        rooms.remove(reservations.get(i).getRoom());
+                    } else if (reservDateOut.isAfter(dateIn) && reservDateOut.isBefore(dateOut)) {
+                        rooms.remove(reservation.getRoom());
 
-                    } else if(reservDateIn.isAfter(dateIn) && reservDateIn.isBefore(dateOut)) {
-                        rooms.remove(reservations.get(i).getRoom());
+                    } else if (reservDateIn.isAfter(dateIn) && reservDateIn.isBefore(dateOut)) {
+                        rooms.remove(reservation.getRoom());
 
                     } else if (reservDateIn.equals(dateIn) && reservDateOut.equals(dateOut)) {
-                        rooms.remove(reservations.get(i).getRoom());
+                        rooms.remove(reservation.getRoom());
 
                     }
                 }
-                Set<Hotel> hotels = new HashSet<>();
+                Set<Hotel> hotelHashSet = new HashSet<>();
 
                 for (Room room: rooms) {
-                    hotels.add(room.getHotel());
+                    hotelHashSet.add(room.getHotel());
                 }
-                return new ResponseEntity<List<Hotel>>(hotels.stream().toList(), HttpStatus.OK);
+
+                List<Hotel> hotels = new ArrayList<>();
+                for (Hotel hotel: hotelHashSet) {
+                    if (hotel.getCity().equals(findHotel.getCity()) ){
+                        hotels.add(hotel);
+                    }
+                }
+                return new ResponseEntity<List<Hotel>>(hotels, HttpStatus.OK);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
