@@ -39,4 +39,24 @@ public class Room {
         this.countBeds = countBeds;
         this.costNight = costNight;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getCountBeds() {
+        return countBeds;
+    }
+
+    public Float getCostNight() {
+        return costNight;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
 }

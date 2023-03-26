@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "reservation")
+@Table(name = "reservations")
 public class Reservation {
 
     @Id
@@ -52,6 +52,10 @@ public class Reservation {
 
     public LocalDate getDateOut() {
         return dateOut;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
 

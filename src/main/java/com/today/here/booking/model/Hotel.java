@@ -1,13 +1,17 @@
 package com.today.here.booking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "hotel")
-public class Hotel {
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
+public class Hotel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
