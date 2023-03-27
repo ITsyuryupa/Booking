@@ -10,7 +10,8 @@ import java.util.Set;
 @Table(name = "rooms")
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private long id;
 
     @Column(name = "name")

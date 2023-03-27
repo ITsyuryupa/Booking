@@ -14,7 +14,8 @@ import java.util.Set;
 public class Hotel implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private long id;
 
     @Column(name = "name")
