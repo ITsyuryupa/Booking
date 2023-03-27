@@ -82,7 +82,7 @@ public class HotelController {
     }
 
     @GetMapping("/hotel/all")
-    public ResponseEntity<?> getAllHotel(@RequestBody FindHotel findHotel) {
+    public ResponseEntity<?> getAllHotel() {
         try {
             List<Hotel> hotels = hotelRepository.findAll();
             return new ResponseEntity<List<Hotel>>(hotels, HttpStatus.OK);
