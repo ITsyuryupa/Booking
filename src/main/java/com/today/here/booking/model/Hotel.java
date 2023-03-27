@@ -32,7 +32,7 @@ public class Hotel implements Serializable {
     @Column(name = "houseNumber")
     private Integer houseNumber;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
     @Column(name = "email")
