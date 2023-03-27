@@ -15,7 +15,7 @@ const SearchBar = () => {
             <div className="headerContainer">
                 <div className="searchHeader">
                     <div className="searchContainer">
-                        <MyInput value={name} setValue={setName} type="text" placeholder="Курорт, город, адрес"/>
+                        <MyInput value={name} setValue={setName} type="text" placeholder="Город"/>
                                 <DatePicker selected={startDate}
                                             onChange={date=>setStartDate(date)}
                                             dateFormat='dd/MM/yyyy'

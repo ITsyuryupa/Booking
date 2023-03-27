@@ -2,12 +2,30 @@ import React, {useState} from 'react';
 import MyButton from "../../../components/UI/button/MyButton";
 import "./Registration.css"
 import MyInput from "../../../components/UI/MyInput/MyInput";
-import {registration} from "../../../actions/auth";
+import {login, registration} from "../../../actions/auth";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 const Registration = () => {
     const [fullName, setFullName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isAuth = useSelector(state => state.user.isAuth)
+
+    function ApplyHandleClick(fullName, phone,email, password) {
+        try {
+            registration(fullName, phone, email, password)
+            dispatch(login(phone, password))
+            if (isAuth){
+                navigate("/");}
+        }
+        catch{
+
+        }
+    }
     return (
         <div className="regist">
             <div className="login-form">
@@ -28,7 +46,7 @@ const Registration = () => {
                     <MyInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль" />
                 </div>
                 <div className="button-container">
-                    <MyButton onClick={() => registration(fullName, phone,email, password)}>Принять</MyButton>
+                    <MyButton onClick={() => ApplyHandleClick(fullName, phone,email, password)}>Принять</MyButton>
                 </div>
             </div>
 

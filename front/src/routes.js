@@ -1,8 +1,9 @@
 import Admin from "./pages/Admin";
-import {ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "./utils/consts";
+import {ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, ROOMS_ROUTE} from "./utils/consts";
 import Login from "./pages/Auth/Login/Login";
 import Home from "./pages/Home/Home";
 import Registration from "./pages/Auth/Registration/Registration";
+import Rooms from "./pages/Rooms/Rooms";
 
 export const authRoutes = [
     {
@@ -22,5 +23,9 @@ export const publicRoutes = [
     {
         path: HOME_ROUTE,
         Component: Home
-}
+    },
+    {
+        path: ROOMS_ROUTE,
+        Component: Rooms
+    }
 ]
