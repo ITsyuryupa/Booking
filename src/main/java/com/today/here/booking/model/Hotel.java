@@ -33,7 +33,6 @@ public class Hotel implements Serializable {
     private Integer houseNumber;
 
     @Column(name = "description")
-    @Lob
     private String description;
 
     @Column(name = "email")

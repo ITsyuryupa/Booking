@@ -31,7 +31,7 @@ public class HotelController {
     ReservationRepository reservationRepository;
     @Autowired
     RoomRepository roomRepository;
-    @GetMapping("/freehotel")
+    @GetMapping("/find")
     public ResponseEntity<?> getAllHotelFreeBetweenDate(@RequestBody FindHotel findHotel) {
         try {
             List<Room> rooms = roomRepository.findAll();
@@ -79,6 +79,18 @@ public class HotelController {
                 }
                 return new ResponseEntity<List<Hotel>>(hotels, HttpStatus.OK);
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllHotel(@RequestBody FindHotel findHotel) {
+        try {
+            List<Hotel> hotels = hotelRepository.findAll();
+            return new ResponseEntity<List<Hotel>>(hotels, HttpStatus.OK);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
