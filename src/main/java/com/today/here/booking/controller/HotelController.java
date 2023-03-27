@@ -93,6 +93,18 @@ public class HotelController {
         }
     }
 
+    @GetMapping("/hotel/get/{hotel_id}")
+    public ResponseEntity<Hotel> getHotelById(@PathVariable("hotel_id") long id) {
+        try {
+            Hotel hotel = hotelRepository.findById(id);
+            return new ResponseEntity<>(hotel, HttpStatus.OK);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     //get all room by hotell id
     @GetMapping("/hotel/allroom/{hotel_id}")

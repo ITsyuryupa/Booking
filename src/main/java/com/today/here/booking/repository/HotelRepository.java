@@ -9,5 +9,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
     List<Hotel> findByCountry(String Country);
 
+    Hotel findById(long id);
+
     boolean existsByName(String name);
 }
