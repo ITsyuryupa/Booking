@@ -93,17 +93,6 @@ public class HotelController {
         }
     }
 
-    @GetMapping("/room/{id}")
-    public ResponseEntity<Room> getRoomByHotelId(@PathVariable("id") long id) {
-        Optional<Room> rooms = roomRepository.findById(id);
-
-        if (rooms.isPresent()) {
-            return new ResponseEntity<>(rooms.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
 
     //get all room by hotell id
     @GetMapping("/hotel/allroom/{hotel_id}")
