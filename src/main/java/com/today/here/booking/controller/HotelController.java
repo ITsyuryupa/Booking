@@ -1,6 +1,7 @@
 package com.today.here.booking.controller;
 
 import com.today.here.booking.model.dto.FindHotel;
+import com.today.here.booking.model.dto.FindHotelRoom;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -105,7 +106,6 @@ public class HotelController {
         }
     }
 
-
     //get all room by hotell id
     @GetMapping("/hotel/allroom/{hotel_id}")
     public ResponseEntity<List<Room>> getAllHotelRoom(@PathVariable("hotel_id") long id) {
@@ -119,6 +119,53 @@ public class HotelController {
         }
     }
 
+    @GetMapping("/hotel/allroom/free")
+    public ResponseEntity<?> getAllHotelRoomFreeBetweenDate(@RequestBody FindHotelRoom findHotelRoom) {
+        try {
+            List<Room> rooms = roomRepository.findAll();
+            List<Reservation> reservations = reservationRepository.findAll();
+
+            if (rooms.isEmpty()) {
+                return new ResponseEntity<>(null, HttpStatus.OK);
+            } else if (findHotelRoom.getDateIn().isAfter(findHotelRoom.getDateOut())) {
+                return new ResponseEntity<>("DataIn after dateOut", HttpStatus.BAD_REQUEST);
+            } else {
+                LocalDate dateIn = findHotelRoom.getDateIn();
+                LocalDate dateOut = findHotelRoom.getDateOut();
+                // find all appropriate rooms
+                for (Reservation reservation : reservations) {
+                    LocalDate reservDateIn = reservation.getDateIn();
+                    LocalDate reservDateOut = reservation.getDateOut();
+                    if (dateIn.isAfter(reservDateIn) && dateIn.isBefore(reservDateOut)) {
+                        rooms.remove(reservation.getRoom());
+
+                    } else if (dateOut.isAfter(reservDateIn) && dateOut.isBefore(reservDateOut)) {
+                        rooms.remove(reservation.getRoom());
+
+                    } else if (reservDateOut.isAfter(dateIn) && reservDateOut.isBefore(dateOut)) {
+                        rooms.remove(reservation.getRoom());
+
+                    } else if (reservDateIn.isAfter(dateIn) && reservDateIn.isBefore(dateOut)) {
+                        rooms.remove(reservation.getRoom());
+
+                    } else if (reservDateIn.equals(dateIn) && reservDateOut.equals(dateOut)) {
+                        rooms.remove(reservation.getRoom());
+
+                    }
+                }
+
+                for (Room room: rooms) {
+                    if (room.getHotel().getId() != findHotelRoom.gethHotelId()){
+                        rooms.remove(room);
+                    }
+                }
+                return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 }
