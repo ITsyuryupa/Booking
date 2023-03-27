@@ -22,6 +22,15 @@ public class Reservation {
     @Column(name = "dateOut")
     private LocalDate dateOut;
 
+    @Column(name = "dateUser")
+    private LocalDate dateUser;
+
+    @Column(name = "passportSeries")
+    private Integer passportSeries ;
+
+    @Column(name = "passportNumber")
+    private Integer passportNumber ;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "room_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -41,10 +50,13 @@ public class Reservation {
         this.dateOut = dateOut;
     }
 
-    public Reservation(LocalDate dateIn, LocalDate dateOut, Room room) {
+    public Reservation(LocalDate dateIn, LocalDate dateOut, Room room, User user, Integer passportSeries, Integer passportNumber) {
         this.dateIn = dateIn;
         this.dateOut = dateOut;
         this.room = room;
+        this.user = user;
+        this.passportSeries = passportSeries;
+        this.passportNumber = passportNumber;
     }
 
     public long getId() {
@@ -63,7 +75,17 @@ public class Reservation {
         return room;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public Integer getPassportSeries() {
+        return passportSeries;
+    }
+
+    public Integer getPassportNumber() {
+        return passportNumber;
+    }
 
 }
 

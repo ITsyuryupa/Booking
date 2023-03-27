@@ -12,4 +12,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query(value = "SELECT * FROM reservations", nativeQuery = true)
     List<Reservation> findAll();
 
+
 }
