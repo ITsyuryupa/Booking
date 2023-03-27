@@ -6,12 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.today.here.booking.model.Hotel;
 import com.today.here.booking.model.Room;
@@ -22,7 +18,7 @@ import com.today.here.booking.repository.RoomRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api/hotel")
+@RequestMapping("/api")
 public class HotelController {
 
     @Autowired
@@ -31,7 +27,7 @@ public class HotelController {
     ReservationRepository reservationRepository;
     @Autowired
     RoomRepository roomRepository;
-    @GetMapping("/find")
+    @GetMapping("/hotel/find")
     public ResponseEntity<?> getAllHotelFreeBetweenDate(@RequestBody FindHotel findHotel) {
         try {
             List<Room> rooms = roomRepository.findAll();
@@ -85,7 +81,7 @@ public class HotelController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("/hotel/all")
     public ResponseEntity<?> getAllHotel(@RequestBody FindHotel findHotel) {
         try {
             List<Hotel> hotels = hotelRepository.findAll();
@@ -96,5 +92,32 @@ public class HotelController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/room/{id}")
+    public ResponseEntity<Room> getRoomByHotelId(@PathVariable("id") long id) {
+        Optional<Room> rooms = roomRepository.findById(id);
+
+        if (rooms.isPresent()) {
+            return new ResponseEntity<>(rooms.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    //get all room by hotell id
+    @GetMapping("/hotel/allroom/{hotel_id}")
+    public ResponseEntity<List<Room>> getAllHotelRoom(@PathVariable("hotel_id") long id) {
+        try {
+            List<Room> rooms = roomRepository.findAllByHotelId(id);
+            return new ResponseEntity<>(rooms, HttpStatus.OK);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 }
