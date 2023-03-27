@@ -16,7 +16,7 @@ import com.today.here.booking.repository.HotelRepository;
 import com.today.here.booking.repository.ReservationRepository;
 import com.today.here.booking.repository.RoomRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class HotelController {

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.today.here.booking.model.User;
 import com.today.here.booking.repository.UserRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
