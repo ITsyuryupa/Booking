@@ -2,6 +2,9 @@ package com.today.here.booking.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,6 +25,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Reservation> reservations = new HashSet<>();
 
     public User() {
 

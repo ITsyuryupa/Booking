@@ -27,6 +27,11 @@ public class Reservation {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Room room;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private User user;
+
     public Reservation() {
 
     }
