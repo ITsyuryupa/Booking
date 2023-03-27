@@ -69,7 +69,7 @@ public class HotelController {
 
                 List<Hotel> hotels = new ArrayList<>();
                 for (Hotel hotel: hotelHashSet) {
-                    if (hotel.getCity().equals(findHotel.getCity()) ){
+                    if (hotel.getCity().equalsIgnoreCase(findHotel.getCity()) ){
                         hotels.add(hotel);
                     }
                 }
