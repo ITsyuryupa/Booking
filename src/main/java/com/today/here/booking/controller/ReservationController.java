@@ -29,7 +29,7 @@ public class ReservationController {
     @Autowired
     RoomRepository roomRepository;
 
-    @PostMapping("/create")
+    @PostMapping("/reservation/create")
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
         try {
 
@@ -40,6 +40,18 @@ public class ReservationController {
 
 
         } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/reservation/getall/{user_id}")
+    public ResponseEntity<List<Reservation>> getAllReservationByUserId(@RequestBody User user) {
+        try {
+            List<Reservation> reservation = reservationRepository.findAllByUser(user);
+            return new ResponseEntity<>(reservation, HttpStatus.OK);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
