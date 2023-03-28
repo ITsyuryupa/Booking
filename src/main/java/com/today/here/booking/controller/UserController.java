@@ -70,4 +70,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/get/{user_id}")
+    public ResponseEntity<Optional<User>> getUserById(@PathVariable("user_id") long id) {
+        try {
+            Optional<User> user = userRepository.findById(id);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
