@@ -38,15 +38,15 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> signinUser(@RequestBody Auth auth) {
+    public ResponseEntity<User> signinUser(@RequestBody Auth auth) {
         try {
             List<User> users = userRepository.findByPhone(auth.getPhone());
             if (users.isEmpty()) {
-                return new ResponseEntity<>("User dont found",HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(null,HttpStatus.UNAUTHORIZED);
             } else if (users.get(0).getPassword().equals(auth.getPassword())) {
-                return new ResponseEntity<>("Access allowed" , HttpStatus.OK);
+                return new ResponseEntity<>(users.get(0) , HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Password is wrong", HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
