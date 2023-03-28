@@ -9,21 +9,22 @@ import {auth} from "../../actions/auth";
 const Header = () => {
     const navigate = useNavigate();
     const isAuth = useSelector(state => state.user.isAuth)
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     function handleClick() {
         navigate("/login");
     }
+
     return (
         <div className={styles.Header}>
-            {isAuth && <div>hh</div>}
             <div className={styles.HeaderContainer}>
                 <span className={styles.Logo}>Today here</span>
                 <div className={styles.Buttons}>
+                    {isAuth && <strong> Привет {user.currentUser.fullName}</strong>}
                     <AlternativeButton>Заказы</AlternativeButton>
-                    {/*{isAuth ? <MyButton onClick={handleClick}>Войти</MyButton> : <div>Уже вошл</div>}*/}
-                    <MyButton onClick={handleClick}>Войти</MyButton>
-                  {/* //  {isAuth &&  <MyButton onClick={() => dispatch(logout()) }>выйти</MyButton>} */}
+                    {!isAuth && <MyButton onClick={handleClick}>Войти</MyButton>}
+
                 </div>
             </div>
         </div>

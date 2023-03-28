@@ -20,16 +20,14 @@ export const registration = async (fullName, phone, email, password) => {
 export const login =  (phone, password) => {
 
     return async dispatch => {
-
         try {
             const response = await axios.post(`http://localhost:8080/api/user/signin`, {
                 phone,
                 password
             })
-            dispatch(setUser(response.data.user))
-
-            console.log(5)
-            localStorage.setItem('user', response.data.user)
+            dispatch(setUser(response.data))
+            console.log(response.data)
+            localStorage.setItem('user', response.data)
         } catch (e) {
             alert(e.response.data.message)
         }

@@ -7,9 +7,11 @@ import MyInput from "../UI/MyInput/MyInput";
 import './SearchBar.css'
 registerLocale('ru', ru)
 const SearchBar = () => {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [name, setName] = useState(null);
+    const [startDate, setStartDate] = useState(new Date());
+    let tomorrow=new Date();
+    tomorrow.setDate(tomorrow.getDate()+1);
+    const [endDate, setEndDate] = useState(tomorrow);
+    const [name, setName] = useState('Kazan');
     return (
         <div className="header">
             <div className="headerContainer">
@@ -24,12 +26,14 @@ const SearchBar = () => {
                                             placeholderText="Дата заезда"
                                 />
                                 <DatePicker selected={endDate}
-                                            onChange={date=>setEndDate(date)}
                                             dateFormat='dd/MM/yyyy'
+                                            onChange={date=>setEndDate(date)}
                                             locale="ru"
                                             className="searchInput"
                                             placeholderText="Дата выезда"
                                 />
+                        {console.log((startDate).toLocaleDateString())}
+                        {console.log((endDate).toLocaleDateString())}
                             <MyButton>Найти</MyButton>
                     </div>
                 </div>

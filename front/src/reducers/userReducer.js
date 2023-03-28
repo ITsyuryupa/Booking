@@ -3,7 +3,8 @@ const LOGOUT = "LOGOUT"
 
 const defaultState = {
     currentUser: {},
-    isAuth: false
+    isAuth: false,
+    phone: {},
 }
 
 export default function userReducer(state = defaultState, action) {
