@@ -27,9 +27,29 @@ export const login =  (phone, password) => {
             })
             dispatch(setUser(response.data))
             console.log(response.data)
+
             localStorage.setItem('user', response.data)
         } catch (e) {
             alert(e.response.data.message)
         }
+    }
+}
+
+export const reservation = async (dateIn, dateOut, room, user, dateUser, passportSeries, passportNumber) => {
+
+    try {
+        const response = await axios.post(`http://localhost:8080/api/reservation/create`, {
+            dateIn,
+            dateOut,
+            room,
+            user,
+            dateUser,
+            passportSeries,
+            passportNumber
+        })
+        alert("Вы успешно забранировали номер")
+
+    } catch (e) {
+        alert(e.response.data.message)
     }
 }

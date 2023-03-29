@@ -3,17 +3,21 @@ import "./Login.css";
 import MyButton from "../../../components/UI/button/MyButton";
 import MyInput from "../../../components/UI/MyInput/MyInput";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../../actions/auth";
 
 const Login = () => {
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
     const navigate=useNavigate()
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();const isAuth = useSelector(state => state.user.isAuth)
+
 
     function handleClick() {
         navigate("/registration");
+    }
+    if(isAuth){
+        navigate(-1)
     }
     return (
         <div className="regist">

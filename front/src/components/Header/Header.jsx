@@ -10,22 +10,25 @@ const Header = () => {
     const navigate = useNavigate();
     const isAuth = useSelector(state => state.user.isAuth)
     const user = useSelector(state => state.user)
-    const dispatch = useDispatch()
 
     function handleClick() {
         navigate("/login");
+    }
+    function toProfile() {
+        navigate("/profile");
+    }
+    function ReghandleClick() {
+        navigate("/registration");
     }
 
     return (
         <div className={styles.Header}>
             <div className={styles.HeaderContainer}>
                 <span className={styles.Logo}>Today here</span>
-                <div className={styles.Buttons}>
-                    {isAuth && <strong> Привет {user.currentUser.fullName}</strong>}
-                    <AlternativeButton>Заказы</AlternativeButton>
-                    {!isAuth && <MyButton onClick={handleClick}>Войти</MyButton>}
-
-                </div>
+                    {isAuth && <strong onClick={toProfile}>{user.currentUser.fullName}</strong>}
+                    {isAuth&&<AlternativeButton>Заказы</AlternativeButton>}
+                    {!isAuth && <div className={styles.Buttons}><MyButton onClick={handleClick}>Войти</MyButton></div>}
+                    {!isAuth && <div className={styles.Buttons}><MyButton onClick={ReghandleClick}>Зарегестрироваться</MyButton></div>}
             </div>
         </div>
     );
