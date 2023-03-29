@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 import com.today.here.booking.model.Hotel;
@@ -40,7 +41,7 @@ public class ReservationController {
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 } else if (reservation.getUser().equals(null)) {
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-                } else if (reservation.getDateUser().equals(null)) {
+                } else if (reservation.getDateUser().equals(null) || Period.between(reservation.getDateUser(), LocalDate.now()).getYears() < 18) {
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 } else if (reservation.getPassportSeries().equals(null)) {
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
