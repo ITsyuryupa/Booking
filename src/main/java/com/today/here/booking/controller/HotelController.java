@@ -28,7 +28,7 @@ public class HotelController {
     ReservationRepository reservationRepository;
     @Autowired
     RoomRepository roomRepository;
-    @GetMapping("/hotel/find")
+    @PostMapping("/hotel/find")
     public ResponseEntity<?> getAllHotelFreeBetweenDate(@RequestBody FindHotel findHotel) {
         try {
             List<Room> rooms = roomRepository.findAll();
