@@ -35,7 +35,7 @@ public class ReservationController {
 
                 Reservation _reservation = reservationRepository
                         .save(new Reservation(reservation.getDateIn(), reservation.getDateOut(),
-                                reservation.getRoom(), reservation.getUser(), reservation.getPassportSeries(), reservation.getPassportNumber()));
+                                reservation.getRoom(), reservation.getUser(), reservation.getDateUser(), reservation.getPassportSeries(), reservation.getPassportNumber()));
                 return new ResponseEntity<>(_reservation, HttpStatus.CREATED);
 
 

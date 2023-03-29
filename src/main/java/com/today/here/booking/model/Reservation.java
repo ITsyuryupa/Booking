@@ -45,16 +45,12 @@ public class Reservation {
 
     }
 
-    public Reservation(LocalDate dateIn, LocalDate dateOut) {
-        this.dateIn = dateIn;
-        this.dateOut = dateOut;
-    }
-
-    public Reservation(LocalDate dateIn, LocalDate dateOut, Room room, User user, Integer passportSeries, Integer passportNumber) {
+    public Reservation(LocalDate dateIn, LocalDate dateOut, Room room, User user, LocalDate dateUser,Integer passportSeries, Integer passportNumber) {
         this.dateIn = dateIn;
         this.dateOut = dateOut;
         this.room = room;
         this.user = user;
+        this.dateUser = dateUser;
         this.passportSeries = passportSeries;
         this.passportNumber = passportNumber;
     }
@@ -77,6 +73,10 @@ public class Reservation {
 
     public User getUser() {
         return user;
+    }
+
+    public LocalDate getDateUser() {
+        return dateUser;
     }
 
     public Integer getPassportSeries() {
