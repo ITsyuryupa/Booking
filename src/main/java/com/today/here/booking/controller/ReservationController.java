@@ -32,8 +32,22 @@ public class ReservationController {
     @PostMapping("/reservation/create")
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
         try {
-
-                Reservation _reservation = reservationRepository
+                if (reservation.getDateIn().equals(null)){
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                } else if (reservation.getDateOut().equals(null)) {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                } else if (reservation.getRoom().equals(null)) {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                } else if (reservation.getUser().equals(null)) {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                } else if (reservation.getDateUser().equals(null)) {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                } else if (reservation.getPassportSeries().equals(null)) {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                } else if (reservation.getPassportNumber().equals(null)) {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                }
+            Reservation _reservation = reservationRepository
                         .save(new Reservation(reservation.getDateIn(), reservation.getDateOut(),
                                 reservation.getRoom(), reservation.getUser(), reservation.getDateUser(), reservation.getPassportSeries(), reservation.getPassportNumber()));
                 return new ResponseEntity<>(_reservation, HttpStatus.CREATED);
