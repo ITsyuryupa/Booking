@@ -10,7 +10,6 @@ import './Reserv.css'
 import "react-datepicker/dist/react-datepicker.css";
 
 const Reserv = ({...props}) => {
-    console.log(props.room)
     const navigate = useNavigate();
     const user = useSelector(state => state.user)
     const isAuth = useSelector(state => state.user.isAuth)
@@ -24,10 +23,7 @@ const Reserv = ({...props}) => {
 
     let dateIn= format(new Date((localStorage.getItem('dateIn'))),"yyyy-MM-dd")
     let dateOut= format(new Date((localStorage.getItem('dateOut'))),"yyyy-MM-dd")
-    let room='1'
     function handleClick(dateIn, dateOut, room, user, dateUser, passportSeries, passportNumber) {
-        console.log(user)
-        console.log(room)
         try {
             reservation(dateIn, dateOut, room, user, dateUser, passportSeries, passportNumber).then(navigate('/'))
         }catch {
@@ -51,7 +47,7 @@ const Reserv = ({...props}) => {
             <div>
                     <text>Для бронирования введите данные</text>
                     <div>
-                        <MyInput value={name} setValue={setName} type="text" placeholder="ФИО"/>
+                        <MyInput value={name} setValue={setName} type="text" placeholder="ФИО" disabled/>
                     </div>
                     <div>
                         <DatePicker selected={birthDate}

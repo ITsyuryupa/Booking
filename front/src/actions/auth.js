@@ -48,7 +48,20 @@ export const reservation = async (dateIn, dateOut, room, user, dateUser, passpor
             passportNumber
         })
         alert("Вы успешно забранировали номер")
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
 
+export const userUpdate = async (id, user) => {
+    console.log(id)
+    console.log(user)
+    try {
+        const response = await axios.put(`http://localhost:8080/api/user/update/` + id, {
+            user
+        })
+        alert("Вы успешно обновили данные")
+        console.log(response)
     } catch (e) {
         alert(e.response.data.message)
     }

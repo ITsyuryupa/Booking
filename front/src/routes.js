@@ -2,7 +2,7 @@ import Admin from "./pages/Admin";
 import {
     ADMIN_ROUTE,
     HOME_ROUTE,
-    LOGIN_ROUTE,
+    LOGIN_ROUTE, ORDERS_ROUTE,
     PROFILE_ROUTE,
     REGISTRATION_ROUTE,
     ROOMS_ROUTE,
@@ -13,7 +13,8 @@ import Home from "./pages/Home/Home";
 import Registration from "./pages/Auth/Registration/Registration";
 import Rooms from "./pages/Rooms/Rooms";
 import HotelsList from "./components/HotelsList/HotelsList";
-import Profile from "./components/UI/profile/profile";
+import Profile from "./pages/profile/profile";
+import Orders from "./pages/ Orders/Orders";
 
 export const authRoutes = [
     {
@@ -23,6 +24,10 @@ export const authRoutes = [
     {
         path: PROFILE_ROUTE,
         Component: Profile
+    },
+    {
+        path: ORDERS_ROUTE,
+        Component: Orders
     }
 ]
 export const publicRoutes = [

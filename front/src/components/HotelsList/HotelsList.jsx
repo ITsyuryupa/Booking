@@ -22,22 +22,21 @@ const HotelsList = (...props) => {
                 setResults(data.data);
             })
     }, [])
-    // const daka = {
-    //     "dateIn": "2022-03-28",
-    //     "dateOut": "2022-03-30",
-    //     "city": "Kazan"
-    // };
-    // useEffect(() => {
-    //     // noinspection JSCheckFunctionSignatures
-    //     console.log("pognali")
-    //     axios.get('http://localhost:8080/api/hotel/find',{
-    //         params: daka
-    //     })
-    //         .then(response => {
-    //             setDHotels(response);
-    //         })
-    //
-    // }, [])
+    const daka = {
+        "dateIn": dateIn,
+        "dateOut": dateOut,
+        "city": city
+    };
+    useEffect(() => {
+        console.log("pognali")
+        axios.get('http://localhost:8080/api/hotel/find',{
+            params: daka
+        })
+            .then(data => {
+                setDHotels(data.data);
+            })
+
+    }, [])
 
     return (
         <div>
@@ -50,11 +49,16 @@ const HotelsList = (...props) => {
                     </div>
                 );
             })}
-            {/*{dHotels.map(result => {*/}
-            {/*    return(*/}
-            {/*        <HotelItem result={result} key={result.id}></HotelItem>*/}
-            {/*    );*/}
-            {/*})}*/}
+            {params.id != null && dHotels.map(result => {
+                return(
+                    <div>
+                        <div>
+                            {   console.log(dHotels)}
+                            <HotelItem result={result} key={result.id}></HotelItem>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
     );
 };

@@ -14,20 +14,31 @@ const Header = () => {
     function handleClick() {
         navigate("/login");
     }
-    function toProfile() {
+    function toProfilehandleClick() {
         navigate("/profile");
     }
     function ReghandleClick() {
         navigate("/registration");
     }
+    function toHomehandleClick() {
+        navigate("/");
+    }
+    function toOrdershandleClick() {
+        navigate("/orders");
+    }
 
     return (
         <div className={styles.Header}>
             <div className={styles.HeaderContainer}>
-                <span className={styles.Logo}>Today here</span>
-                    {isAuth && <strong onClick={toProfile}>{user.currentUser.fullName}</strong>}
-                    {isAuth&&<AlternativeButton>Заказы</AlternativeButton>}
-                    {!isAuth && <div className={styles.Buttons}><MyButton onClick={handleClick}>Войти</MyButton></div>}
+                <span className={styles.Logo} onClick={toHomehandleClick}>Today here</span>
+                    {isAuth && <strong onClick={toProfilehandleClick}>{user.currentUser.fullName}</strong>}
+                    {isAuth&&<AlternativeButton onClick={toOrdershandleClick}>Заказы</AlternativeButton>}
+                    {!isAuth &&
+                        <div className={styles.ButtonsContainer}>
+                            <div className={styles.Buttons}>
+                                <MyButton onClick={handleClick}>Войти</MyButton>
+                            </div>
+                        </div>}
                     {!isAuth && <div className={styles.Buttons}><MyButton onClick={ReghandleClick}>Зарегестрироваться</MyButton></div>}
             </div>
         </div>

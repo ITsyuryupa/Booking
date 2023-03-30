@@ -5,6 +5,9 @@
     justify-content: center;
 }
 .Logo{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
     font-size: 20px;
     font-weight: 900;
 }
@@ -15,7 +18,16 @@
     align-items: center;
     justify-content: space-between;
 }
+.ButtonsContainer{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
 .Buttons{
+    display: flex;
+    align-items: center;
     margin-left: 20px;
     border: none;
     padding: 5px 10px;
