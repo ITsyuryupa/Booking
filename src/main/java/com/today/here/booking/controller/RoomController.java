@@ -36,4 +36,20 @@ public class RoomController {
         }
     }
 
+    @PostMapping("/room/create")
+    public ResponseEntity<Room> createRoom(@RequestBody Room room) {
+        try {
+            if (!roomRepository.existsByName(room.getName())) {
+                Room _room = roomRepository
+                        .save(new Room(room.getName(), room.getCountBeds(), room.getCostNight(), room.getHotel()));
+                return new ResponseEntity<>(_room, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

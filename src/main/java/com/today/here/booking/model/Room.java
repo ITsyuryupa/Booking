@@ -35,10 +35,11 @@ public class Room {
 
     }
 
-    public Room(String name, Integer countBeds, Float costNight) {
+    public Room(String name, Integer countBeds, Float costNight, Hotel hotel) {
         this.name = name;
         this.countBeds = countBeds;
         this.costNight = costNight;
+        this.hotel = hotel;
     }
 
     public long getId() {

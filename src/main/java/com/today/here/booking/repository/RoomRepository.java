@@ -16,4 +16,6 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     @Query(value = "SELECT * FROM rooms  WHERE hotel_id = ?1", nativeQuery = true)
     List<Room> findAllByHotelId(@Param("id") Long hotel_id);
 
+    boolean existsByName(String name);
+
 }
