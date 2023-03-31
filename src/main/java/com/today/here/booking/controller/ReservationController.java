@@ -83,4 +83,16 @@ public class ReservationController {
         }
     }
 
+    @GetMapping("/reservation/get/{id}")
+    public ResponseEntity<?> getReservationById(@PathVariable("id") long id) {
+        try {
+            Optional<Reservation> reservation = reservationRepository.findById(id);
+            return new ResponseEntity<>(reservation, HttpStatus.OK);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
