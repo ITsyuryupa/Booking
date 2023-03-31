@@ -159,6 +159,23 @@ public class HotelController {
         }
     }
 
+    @PostMapping("/hotel/create")
+    public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
+        try {
+            if (!hotelRepository.existsByName(hotel.getName())) {
+                Hotel _hotel = hotelRepository
+                        .save(new Hotel(hotel.getName(), hotel.getCountry(), hotel.getCity(), hotel.getStreet(), hotel.getHouseNumber(), hotel.getDescription(), hotel.getEmail()));
+                return new ResponseEntity<>(_hotel, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //room part
     //get all room by hotell id
     @GetMapping("/hotel/allroom/{hotel_id}")
     public ResponseEntity<List<Room>> getAllHotelRoom(@PathVariable("hotel_id") long id) {
@@ -219,20 +236,5 @@ public class HotelController {
         }
     }
 
-    @PostMapping("/hotel/create")
-    public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
-        try {
-            if (!hotelRepository.existsByName(hotel.getName())) {
-                Hotel _hotel = hotelRepository
-                        .save(new Hotel(hotel.getName(), hotel.getCountry(), hotel.getCity(), hotel.getStreet(), hotel.getHouseNumber(), hotel.getDescription(), hotel.getEmail()));
-                return new ResponseEntity<>(_hotel, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
 }
