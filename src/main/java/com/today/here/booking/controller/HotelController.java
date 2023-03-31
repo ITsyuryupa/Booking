@@ -175,6 +175,16 @@ public class HotelController {
         }
     }
 
+    @DeleteMapping("/hotel/{id}")
+    public ResponseEntity<HttpStatus> deleteHotel(@PathVariable("id") long id) {
+        try {
+            hotelRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     //room part
     //get all room by hotell id
     @GetMapping("/hotel/allroom/{hotel_id}")
