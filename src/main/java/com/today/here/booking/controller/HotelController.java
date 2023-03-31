@@ -1,5 +1,6 @@
 package com.today.here.booking.controller;
 
+import com.today.here.booking.model.User;
 import com.today.here.booking.model.dto.FindHotel;
 import com.today.here.booking.model.dto.FindHotelRoom;
 import org.springframework.web.bind.annotation.*;
@@ -219,5 +220,20 @@ public class HotelController {
         }
     }
 
+    @PostMapping("/hotel/create")
+    public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
+        try {
+            if (!hotelRepository.existsByName(hotel.getName())) {
+                Hotel _hotel = hotelRepository
+                        .save(new Hotel(hotel.getName(), hotel.getCountry(), hotel.getCity(), hotel.getStreet(), hotel.getHouseNumber(), hotel.getDescription(), hotel.getEmail()));
+                return new ResponseEntity<>(_hotel, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
