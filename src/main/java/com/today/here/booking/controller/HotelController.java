@@ -173,18 +173,16 @@ public class HotelController {
     }
 
     @GetMapping("/hotel/allroom/free")
-    public ResponseEntity<?> getAllHotelRoomFreeBetweenDate(@RequestBody FindHotelRoom findHotelRoom) {
+    public ResponseEntity<?> getAllHotelRoomFreeBetweenDate(@RequestParam(name = "dateIn") LocalDate dateIn, @RequestParam(name = "dateOut") LocalDate dateOut, @RequestParam(name = "hotel_id") long id) {
         try {
             List<Room> rooms = roomRepository.findAll();
             List<Reservation> reservations = reservationRepository.findAll();
 
             if (rooms.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.OK);
-            } else if (findHotelRoom.getDateIn().isAfter(findHotelRoom.getDateOut())) {
+            } else if (dateIn.isAfter(dateOut)) {
                 return new ResponseEntity<>("DataIn after dateOut", HttpStatus.BAD_REQUEST);
             } else {
-                LocalDate dateIn = findHotelRoom.getDateIn();
-                LocalDate dateOut = findHotelRoom.getDateOut();
                 // find all appropriate rooms
                 for (Reservation reservation : reservations) {
                     LocalDate reservDateIn = reservation.getDateIn();
@@ -207,12 +205,13 @@ public class HotelController {
                     }
                 }
 
+                List<Room> corresctRoom = new ArrayList<>();
                 for (Room room: rooms) {
-                    if (room.getHotel().getId() != findHotelRoom.gethHotelId()){
-                        rooms.remove(room);
+                    if (room.getHotel().getId() == id){
+                        corresctRoom.add(room);
                     }
                 }
-                return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+                return new ResponseEntity<List<Room>>(corresctRoom, HttpStatus.OK);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
