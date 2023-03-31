@@ -60,9 +60,9 @@ public class ReservationController {
     }
 
     @GetMapping("/reservation/getall/{user_id}")
-    public ResponseEntity<List<Reservation>> getAllReservationByUserId(@RequestBody User user) {
+    public ResponseEntity<List<Reservation>> getAllReservationByUserId(@PathVariable("user_id") long id) {
         try {
-            List<Reservation> reservation = reservationRepository.findAllByUser(user);
+            List<Reservation> reservation = reservationRepository.findAllByUserId(id);
             return new ResponseEntity<>(reservation, HttpStatus.OK);
 
         } catch (Exception e) {

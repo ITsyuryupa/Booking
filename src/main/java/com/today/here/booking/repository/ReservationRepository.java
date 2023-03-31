@@ -4,6 +4,7 @@ import com.today.here.booking.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.today.here.booking.model.Reservation;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,4 +19,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     Optional<Reservation> findById(Long aLong);
 
     List<Reservation> findAllByUser(User user);
+
+    @Query(value = "SELECT * FROM reservations where user_id = ?1", nativeQuery = true)
+    List<Reservation> findAllByUserId(@Param("userId") Long userId);
 }
