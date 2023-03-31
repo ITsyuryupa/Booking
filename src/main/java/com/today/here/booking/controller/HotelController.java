@@ -148,9 +148,9 @@ public class HotelController {
     }
 
     @GetMapping("/hotel/get/{hotel_id}")
-    public ResponseEntity<Hotel> getHotelById(@PathVariable("hotel_id") long id) {
+    public ResponseEntity<Optional<Hotel>> getHotelById(@PathVariable("hotel_id") long id) {
         try {
-            Hotel hotel = hotelRepository.findById(id);
+            Optional<Hotel> hotel = hotelRepository.findById(id);
             return new ResponseEntity<>(hotel, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -182,6 +182,24 @@ public class HotelController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/hotel/{id}")
+    public ResponseEntity<Hotel> updateHotel(@PathVariable("id") long id, @RequestBody Hotel hotel) {
+        Optional<Hotel> hotelData = hotelRepository.findById(id);
+
+        if (hotelData.isPresent()) {
+            Hotel _hotel = hotelData.get();
+            _hotel.setCountry(hotel.getCountry());
+            _hotel.setDescription(hotel.getDescription());
+            _hotel.setHouseNumber(hotel.getHouseNumber());
+            _hotel.setStreet(hotel.getStreet());
+            _hotel.setEmail(hotel.getEmail());
+            _hotel.setName(hotel.getName());
+            return new ResponseEntity<>(hotelRepository.save(_hotel), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
