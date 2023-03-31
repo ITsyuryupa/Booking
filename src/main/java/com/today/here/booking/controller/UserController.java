@@ -54,7 +54,7 @@ public class UserController {
 
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         Optional<User> userData = userRepository.findById(id);
 
@@ -91,6 +91,16 @@ public class UserController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+        try {
+            userRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
