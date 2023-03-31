@@ -36,6 +36,17 @@ public class RoomController {
         }
     }
 
+    @GetMapping("/room/all")
+    public ResponseEntity<List<Room>> getRoomAll() {
+        List<Room> rooms = roomRepository.findAll();
+
+        if (!rooms.equals(null)) {
+            return new ResponseEntity<>(rooms, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/room/create")
     public ResponseEntity<Room> createRoom(@RequestBody Room room) {
         try {
