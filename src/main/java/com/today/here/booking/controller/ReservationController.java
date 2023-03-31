@@ -71,4 +71,16 @@ public class ReservationController {
         }
     }
 
+    @GetMapping("/reservation/getall")
+    public ResponseEntity<List<Reservation>> getAllReservation() {
+        try {
+            List<Reservation> reservation = reservationRepository.findAll();
+            return new ResponseEntity<>(reservation, HttpStatus.OK);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
