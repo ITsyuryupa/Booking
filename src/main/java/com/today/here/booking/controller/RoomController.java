@@ -73,4 +73,21 @@ public class RoomController {
         }
     }
 
+    @PutMapping("/room/{id}")
+    public ResponseEntity<Room> updateRoom(@PathVariable("id") long id, @RequestBody Room room) {
+        Optional<Room> roomData = roomRepository.findById(id);
+
+        if (roomData.isPresent()) {
+            Room _room = roomData.get();
+            _room.setCostNight(room.getCostNight());
+            _room.setCountBeds(room.getCountBeds());
+            _room.setHotel(room.getHotel());
+            _room.setName(room.getName());
+
+            return new ResponseEntity<>(roomRepository.save(_room), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

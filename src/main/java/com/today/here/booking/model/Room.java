@@ -61,4 +61,24 @@ public class Room {
     public Hotel getHotel() {
         return hotel;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCountBeds(Integer countBeds) {
+        this.countBeds = countBeds;
+    }
+
+    public void setCostNight(Float costNight) {
+        this.costNight = costNight;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
 }
