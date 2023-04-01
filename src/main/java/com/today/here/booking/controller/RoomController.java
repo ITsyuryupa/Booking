@@ -63,4 +63,14 @@ public class RoomController {
         }
     }
 
+    @DeleteMapping("/room/{id}")
+    public ResponseEntity<HttpStatus> deleteRoom(@PathVariable("id") long id) {
+        try {
+            roomRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
