@@ -95,4 +95,14 @@ public class ReservationController {
         }
     }
 
+    @DeleteMapping("/reservation/{id}")
+    public ResponseEntity<HttpStatus> deleteReservation(@PathVariable("id") long id) {
+        try {
+            reservationRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
