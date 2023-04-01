@@ -25,19 +25,19 @@ public class Admin {
         this.password = password;
     }
 
-    private String getLogin() {
+    public String getLogin() {
         return login;
     }
 
-    private void setLogin(String login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }
