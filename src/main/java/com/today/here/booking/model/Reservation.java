@@ -90,5 +90,34 @@ public class Reservation {
         return passportNumber;
     }
 
+
+    public void setDateIn(LocalDate dateIn) {
+        this.dateIn = dateIn;
+    }
+
+    public void setDateOut(LocalDate dateOut) {
+        this.dateOut = dateOut;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setDateUser(LocalDate dateUser) {
+            this.dateUser = dateUser;
+    }
+
+    public void setPassportSeries(Integer passportSeries) {
+            this.passportSeries = passportSeries;
+    }
+
+    public void setPassportNumber(Integer passportNumber) {
+        this.passportNumber = passportNumber;
+    }
+
 }
 

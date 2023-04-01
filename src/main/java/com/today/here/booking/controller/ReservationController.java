@@ -105,4 +105,23 @@ public class ReservationController {
         }
     }
 
+    @PutMapping("/reservation/{id}")
+    public ResponseEntity<Reservation> updateReservation(@PathVariable("id") long id, @RequestBody Reservation reservation) {
+        Optional<Reservation> reservationData = reservationRepository.findById(id);
+
+        if (reservationData.isPresent()) {
+            Reservation _reservation = reservationData.get();
+            _reservation.setDateOut(reservation.getDateOut());
+            _reservation.setDateUser(reservation.getDateUser());
+            _reservation.setRoom(reservation.getRoom());
+            _reservation.setUser(reservation.getUser());
+            _reservation.setPassportNumber(reservation.getPassportNumber());
+            _reservation.setPassportSeries(reservation.getPassportSeries());
+            _reservation.setDateIn(reservation.getDateIn());
+            return new ResponseEntity<>(reservationRepository.save(_reservation), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
