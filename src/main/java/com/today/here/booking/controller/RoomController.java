@@ -26,7 +26,7 @@ public class RoomController {
     RoomRepository roomRepository;
 
     @GetMapping("/room/{id}")
-    public ResponseEntity<Room> getRoomBylId(@PathVariable("id") long id) {
+    public ResponseEntity<Room> getRoomById(@PathVariable("id") long id) {
         Optional<Room> rooms = roomRepository.findById(id);
 
         if (rooms.isPresent()) {
