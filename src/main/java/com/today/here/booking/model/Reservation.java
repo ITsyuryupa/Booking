@@ -1,6 +1,8 @@
 package com.today.here.booking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -33,7 +35,8 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "room_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @JsonIgnoreProperties("hibernateLazyInitializer")
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
