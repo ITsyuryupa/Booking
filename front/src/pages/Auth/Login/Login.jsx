@@ -10,7 +10,8 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
     const navigate=useNavigate()
-    const dispatch = useDispatch();const isAuth = useSelector(state => state.user.isAuth)
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.user.isAuth)
 
 
     function handleClick() {

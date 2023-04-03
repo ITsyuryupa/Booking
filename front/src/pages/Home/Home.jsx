@@ -12,7 +12,6 @@ const Home = () => {
         <div>
             <Header></Header>
             <SearchBar></SearchBar>
-            <HotelsList></HotelsList>
         </div>
     );
 };

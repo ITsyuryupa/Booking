@@ -1,6 +1,7 @@
-import Admin from "./pages/Admin";
+import Admin from "./pages/Admin/Admin";
 import {
     ADMIN_ROUTE,
+    ADMINLOGIN_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE, ORDERS_ROUTE,
     PROFILE_ROUTE,
@@ -15,12 +16,9 @@ import Rooms from "./pages/Rooms/Rooms";
 import HotelsList from "./components/HotelsList/HotelsList";
 import Profile from "./pages/profile/profile";
 import Orders from "./pages/ Orders/Orders";
+import AdminAuth from "./pages/Admin/AdminAuth/AdminAuth";
 
 export const authRoutes = [
-    {
-        path: ADMIN_ROUTE,
-        Component: Admin
-    },
     {
         path: PROFILE_ROUTE,
         Component: Profile
@@ -30,10 +28,22 @@ export const authRoutes = [
         Component: Orders
     }
 ]
+
+export const adminRoutes = [
+    {
+        path: ADMIN_ROUTE,
+        Component: Admin
+    }
+]
+
 export const publicRoutes = [
     {
         path: LOGIN_ROUTE,
         Component: Login
+    },
+    {
+        path: ADMINLOGIN_ROUTE,
+        Component: AdminAuth
     },
     {
         path: REGISTRATION_ROUTE,

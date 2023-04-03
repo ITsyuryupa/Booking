@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {setUser} from "../reducers/userReducer";
+import {setAdmin} from "../reducers/adminReducer";
 
 export const registration = async (fullName, phone, email, password) => {
 
@@ -12,6 +13,7 @@ export const registration = async (fullName, phone, email, password) => {
             password
         })
         alert("Вы успешно зарегестрировались")
+        console.log(response)
     } catch (e) {
         alert(e.response.data.message)
     }
@@ -29,6 +31,24 @@ export const login =  (phone, password) => {
             console.log(response.data)
 
             localStorage.setItem('user', response.data)
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+}
+
+export const adminLogin =  (login, password) => {
+
+    return async dispatch => {
+        try {
+            const response = await axios.post(`http://localhost:8080/api/admin/signin`, {
+                login,
+                password
+            })
+            dispatch(setAdmin(response.data))
+            console.log(response.data)
+
+            localStorage.setItem('admin', response.data)
         } catch (e) {
             alert(e.response.data.message)
         }

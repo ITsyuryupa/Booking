@@ -4,14 +4,25 @@ import axios from "axios";
 import RoomItem from "./RoomItem";
 import "./Rooms.css"
 import MyButton from "../../components/UI/button/MyButton";
+import {format} from "date-fns";
 
 const Rooms = () => {
     const params = useParams()
     const navigate = useNavigate();
     const [Hotel, setHotel] = useState([])
     const [rooms, setRooms] = useState([])
+    let dateIn= format(new Date((localStorage.getItem('dateIn'))),"yyyy-MM-dd")
+    let dateOut= format(new Date((localStorage.getItem('dateOut'))),"yyyy-MM-dd")
+    const dta = {
+        "dateIn": dateIn,
+        "dateOut": dateOut,
+        "hotel_id": params.id
+
+    };
     useEffect(()=>{
-        axios.get('http://localhost:8080/api/hotel/allroom/' + params.id)
+        axios.get('http://localhost:8080/api/hotel/allroom/free', {
+            params: dta
+        })
             .then(data=> {
                 setRooms(data.data)
                 console.log(data.data)

@@ -32,7 +32,10 @@ const Header = () => {
             <div className={styles.HeaderContainer}>
                 <span className={styles.Logo} onClick={toHomehandleClick}>Today here</span>
                     {isAuth && <strong onClick={toProfilehandleClick}>{user.currentUser.fullName}</strong>}
-                    {isAuth&&<AlternativeButton onClick={toOrdershandleClick}>Заказы</AlternativeButton>}
+                    {isAuth&&                         <div className={styles.ButtonsContainer}>
+                        <div className={styles.Buttons}><AlternativeButton onClick={toOrdershandleClick}>Мои брони</AlternativeButton>
+                        </div>
+                    </div>}
                     {!isAuth &&
                         <div className={styles.ButtonsContainer}>
                             <div className={styles.Buttons}>

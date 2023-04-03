@@ -27,7 +27,6 @@ const Reserv = ({...props}) => {
         try {
             reservation(dateIn, dateOut, room, user, dateUser, passportSeries, passportNumber).then(navigate('/'))
         }catch {
-            alert("Что-то пошло не так, попробуйте позже.")
         }
 
     }

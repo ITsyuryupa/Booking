@@ -4,6 +4,7 @@ import HotelItem from "../UI/HotelItem/HotelItem";
 import {useParams} from "react-router-dom";
 import {format} from "date-fns";
 import {setUser} from "../../reducers/userReducer";
+import Header from "../Header/Header";
 
 
 const HotelsList = (...props) => {
@@ -16,19 +17,18 @@ const HotelsList = (...props) => {
     const [results, setResults] = useState([])
     const [dHotels, setDHotels] = useState([])
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/hotel/all')
-            .then(data => {
-                setResults(data.data);
-            })
-    }, [])
+    // useEffect(() => {
+    //     axios.get('http://localhost:8080/api/hotel/all')
+    //         .then(data => {
+    //             setResults(data.data);
+    //         })
+    // }, [])
     const daka = {
         "dateIn": dateIn,
         "dateOut": dateOut,
         "city": city
     };
     useEffect(() => {
-        console.log("pognali")
         axios.get('http://localhost:8080/api/hotel/find',{
             params: daka
         })
@@ -40,15 +40,16 @@ const HotelsList = (...props) => {
 
     return (
         <div>
-            {params.id == null && results.map(result => {
-                return(
-                    <div>
-                        <div>
-                            <HotelItem result={result} key={result.id}></HotelItem>
-                        </div>
-                    </div>
-                );
-            })}
+            <Header></Header>
+            {/*{params.id == null && results.map(result => {*/}
+            {/*    return(*/}
+            {/*        <div>*/}
+            {/*            <div>*/}
+            {/*                <HotelItem result={result} key={result.id}></HotelItem>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    );*/}
+            {/*})}*/}
             {params.id != null && dHotels.map(result => {
                 return(
                     <div>

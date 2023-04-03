@@ -15,12 +15,12 @@ const Registration = () => {
     const navigate = useNavigate();
     const isAuth = useSelector(state => state.user.isAuth)
 
+    if (isAuth){
+        navigate("/");}
     function ApplyHandleClick(fullName, phone,email, password) {
         try {
             registration(fullName, phone, email, password)
             dispatch(login(phone, password))
-            if (isAuth){
-                navigate("/");}
         }
         catch{
 
