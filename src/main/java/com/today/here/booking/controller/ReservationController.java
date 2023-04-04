@@ -1,5 +1,6 @@
 package com.today.here.booking.controller;
 
+import com.today.here.booking.mail.EmailService;
 import com.today.here.booking.model.User;
 import com.today.here.booking.model.dto.FindHotel;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,8 @@ public class ReservationController {
     ReservationRepository reservationRepository;
     @Autowired
     RoomRepository roomRepository;
+    @Autowired
+    EmailService emailService;
 
     @PostMapping("/reservation/create")
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
@@ -48,6 +51,9 @@ public class ReservationController {
                 } else if (reservation.getPassportNumber().equals(null)) {
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 }
+            System.out.println(reservation.getRoom().getHotel().getEmail());
+            emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "Welcome", "This is a welcome email for your!!");
+
             Reservation _reservation = reservationRepository
                         .save(new Reservation(reservation.getDateIn(), reservation.getDateOut(),
                                 reservation.getRoom(), reservation.getUser(), reservation.getDateUser(), reservation.getPassportSeries(), reservation.getPassportNumber()));
