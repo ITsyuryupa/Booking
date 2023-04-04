@@ -83,6 +83,7 @@ public class RoomController {
             _room.setCountBeds(room.getCountBeds());
             _room.setHotel(room.getHotel());
             _room.setName(room.getName());
+            _room.setCount(room.getCount());
 
             return new ResponseEntity<>(roomRepository.save(_room), HttpStatus.OK);
         } else {
