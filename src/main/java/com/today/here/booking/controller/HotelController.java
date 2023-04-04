@@ -35,7 +35,10 @@ public class HotelController {
         try {
             List<Room> rooms = roomRepository.findAll();
             List<Reservation> reservations = reservationRepository.findAll();
-
+            HashMap<Room, Integer> roomAndCount = new HashMap<>();
+            for (Room room: rooms) {
+                roomAndCount.put(room, room.getCount());
+            }
             if (rooms.isEmpty()) {
                 return new ResponseEntity<>(null, HttpStatus.OK);
             } else if (dateIn.isAfter(dateOut)) {
@@ -45,27 +48,31 @@ public class HotelController {
                 for (Reservation reservation : reservations) {
                     LocalDate reservDateIn = reservation.getDateIn();
                     LocalDate reservDateOut = reservation.getDateOut();
+                    Room currentRoom = reservation.getRoom();
+
                     if (dateIn.isAfter(reservDateIn) && dateIn.isBefore(reservDateOut)) {
-                        rooms.remove(reservation.getRoom());
+                        roomAndCount.replace(currentRoom, roomAndCount.get(currentRoom) - 1);
+
 
                     } else if (dateOut.isAfter(reservDateIn) && dateOut.isBefore(reservDateOut)) {
-                        rooms.remove(reservation.getRoom());
+                        roomAndCount.replace(currentRoom, roomAndCount.get(currentRoom) - 1);
 
                     } else if (reservDateOut.isAfter(dateIn) && reservDateOut.isBefore(dateOut)) {
-                        rooms.remove(reservation.getRoom());
+                        roomAndCount.replace(currentRoom, roomAndCount.get(currentRoom) - 1);
 
                     } else if (reservDateIn.isAfter(dateIn) && reservDateIn.isBefore(dateOut)) {
-                        rooms.remove(reservation.getRoom());
+                        roomAndCount.replace(currentRoom, roomAndCount.get(currentRoom) - 1);
 
                     } else if (reservDateIn.equals(dateIn) && reservDateOut.equals(dateOut)) {
-                        rooms.remove(reservation.getRoom());
-
+                        roomAndCount.replace(currentRoom, roomAndCount.get(currentRoom) - 1);
                     }
                 }
                 Set<Hotel> hotelHashSet = new HashSet<>();
 
-                for (Room room: rooms) {
-                    hotelHashSet.add(room.getHotel());
+                for (Room key : roomAndCount.keySet()) {
+                    if (roomAndCount.get(key) > 0) {
+                        hotelHashSet.add(key.getHotel());
+                    }
                 }
 
                 List<Hotel> hotels = new ArrayList<>();
