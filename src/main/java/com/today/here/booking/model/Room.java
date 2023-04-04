@@ -23,6 +23,9 @@ public class Room {
     @Column(name = "costNight")
     private Float costNight;
 
+    @Column(name = "count")
+    private Integer count;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "hotel_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -35,16 +38,22 @@ public class Room {
 
     }
 
-    public Room(String name, Integer countBeds, Float costNight, Hotel hotel) {
+    public Room(String name, Integer countBeds, Float costNight, Hotel hotel, Integer count) {
         this.name = name;
         this.countBeds = countBeds;
         this.costNight = costNight;
         this.hotel = hotel;
+        this.count = count;
     }
 
     public long getId() {
         return id;
     }
+
+    public Integer getCount() {
+        return count;
+    }
+
 
     public String getName() {
         return name;
@@ -64,6 +73,10 @@ public class Room {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public void setName(String name) {

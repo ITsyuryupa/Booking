@@ -52,7 +52,7 @@ public class RoomController {
         try {
             if (!roomRepository.existsByName(room.getName())) {
                 Room _room = roomRepository
-                        .save(new Room(room.getName(), room.getCountBeds(), room.getCostNight(), room.getHotel()));
+                        .save(new Room(room.getName(), room.getCountBeds(), room.getCostNight(), room.getHotel(), room.getCount()));
                 return new ResponseEntity<>(_room, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
