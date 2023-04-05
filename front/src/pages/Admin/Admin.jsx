@@ -9,14 +9,21 @@ import AdminHotels from "./AdminHotels";
 const Admin = () => {
     const navigate=useNavigate()
     const isAdmin = useSelector(state => state.admin.isAuth)
+    console.log(isAdmin)
     if(!isAdmin){
         navigate('/admin/login')
+    }
+    function toHotels(){
+        navigate('/admin/hotels')
+    }
+    function toUsers(){
+        navigate('/admin/users')
     }
     return (
         <div>
             <AdminHeader></AdminHeader>
-            <div className='button-container'><MyButton>Пользователи</MyButton></div>
-            <div className='button-container'><MyButton>Отели</MyButton></div>
+            <div className='button-container' onClick={toUsers}><MyButton>Пользователи</MyButton></div>
+            <div className='button-container' onClick={toHotels}><MyButton>Отели</MyButton></div>
             {/*<AdminHotels></AdminHotels>*/}
         </div>
     );

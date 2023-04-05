@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import styles from './MyInput.module.css'
 const MyInput = (props) => {
     const [disabled, setDisabled] = useState(props.disabled);
-    console.log(props.disabled)
     if (props.disabled == true)
     {
 

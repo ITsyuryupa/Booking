@@ -1,7 +1,9 @@
 import Admin from "./pages/Admin/Admin";
 import {
     ADMIN_ROUTE,
+    ADMINHOTELS_ROUTE,
     ADMINLOGIN_ROUTE,
+    ADMINUSERSLIST_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE, ORDERS_ROUTE,
     PROFILE_ROUTE,
@@ -17,6 +19,8 @@ import HotelsList from "./components/HotelsList/HotelsList";
 import Profile from "./pages/profile/profile";
 import Orders from "./pages/ Orders/Orders";
 import AdminAuth from "./pages/Admin/AdminAuth/AdminAuth";
+import AdminHotels from "./pages/Admin/AdminHotels";
+import AdminUsersList from "./pages/Admin/AdminUsersList/AdminUsersList";
 
 export const authRoutes = [
     {
@@ -26,14 +30,22 @@ export const authRoutes = [
     {
         path: ORDERS_ROUTE,
         Component: Orders
-    }
+    },
 ]
 
 export const adminRoutes = [
     {
         path: ADMIN_ROUTE,
         Component: Admin
-    }
+    },
+    {
+        path: ADMINHOTELS_ROUTE,
+        Component: AdminHotels
+    },
+    {
+        path: ADMINUSERSLIST_ROUTE,
+        Component: AdminUsersList
+    },
 ]
 
 export const publicRoutes = [

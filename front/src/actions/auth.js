@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {setUser} from "../reducers/userReducer";
 import {setAdmin} from "../reducers/adminReducer";
+import {useNavigate} from "react-router-dom";
 
 export const registration = async (fullName, phone, email, password) => {
 
@@ -13,9 +14,10 @@ export const registration = async (fullName, phone, email, password) => {
             password
         })
         alert("Вы успешно зарегестрировались")
-        console.log(response)
+        return true;
     } catch (e) {
         alert(e.response.data.message)
+        return false;
     }
 }
 
@@ -68,8 +70,41 @@ export const reservation = async (dateIn, dateOut, room, user, dateUser, passpor
             passportNumber
         })
         alert("Вы успешно забранировали номер")
+        return true;
     } catch (e) {
         alert(e.response.data.message)
+        return false;
+    }
+}
+export const AddHotels = async (name, country, city, street, houseNumber, description, email) => {
+    console.log(name)
+
+    try {
+        const response = await axios.post(`http://localhost:8080/api/hotel/create`, {
+            name,
+            country,
+            city,
+            street,
+            houseNumber,
+            description,
+            email
+        })
+        alert("Вы успешно добавили отель")
+        return true;
+    } catch (e) {
+        alert(e.response.data.message)
+        return false;
+    }
+}
+
+export const DeleteReservation = async (id) => {
+    try {
+        const response = await axios.delete(`http://localhost:8080/api/reservation/` + id)
+        alert("Вы успешно удалили бронь")
+        return true;
+    } catch (e) {
+        alert(e.response.data.message)
+        return false;
     }
 }
 

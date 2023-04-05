@@ -5,6 +5,7 @@ import RoomItem from "./RoomItem";
 import "./Rooms.css"
 import MyButton from "../../components/UI/button/MyButton";
 import {format} from "date-fns";
+import Header from "../../components/Header/Header";
 
 const Rooms = () => {
     const params = useParams()
@@ -40,18 +41,21 @@ const Rooms = () => {
     }
     return (
         <div>
-            <strong className='header'>{Hotel.name}</strong>
-            <title className='header'>{Hotel.description}</title>
-            {
-                rooms.map(room =>{
-                    return(
-                        <RoomItem room={room} key={room.id}></RoomItem>
-                    );
-                })
-            }
-            <div className='header'>
-                <div className='room__btns'>
-                    <MyButton className='header' onClick={handleClick}>Назад</MyButton>
+            <Header></Header>
+            <div>
+                <strong className='header'>{Hotel.name}</strong>
+                <title className='header'>{Hotel.description}</title>
+                {
+                    rooms.map(room =>{
+                        return(
+                            <RoomItem room={room} key={room.id}></RoomItem>
+                        );
+                    })
+                }
+                <div className='header'>
+                    <div className='room__btns'>
+                        <MyButton className='header' onClick={handleClick}>Назад</MyButton>
+                    </div>
                 </div>
             </div>
         </div>

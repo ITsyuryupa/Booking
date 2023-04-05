@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import MyButton from "../../../components/UI/button/MyButton";
 import "./Registration.css"
 import MyInput from "../../../components/UI/MyInput/MyInput";
-import {login, registration} from "../../../actions/auth";
+import {AddHotels, login, registration} from "../../../actions/auth";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 const Registration = () => {
@@ -17,13 +17,11 @@ const Registration = () => {
 
     if (isAuth){
         navigate("/");}
-    function ApplyHandleClick(fullName, phone,email, password) {
-        try {
-            registration(fullName, phone, email, password)
-            dispatch(login(phone, password))
-        }
-        catch{
 
+    const ApplyHandleClick = async () => {
+        const success = await registration(fullName, phone, email, password);
+        if (success) {
+            navigate('/');
         }
     }
     return (
@@ -46,7 +44,7 @@ const Registration = () => {
                     <MyInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль" />
                 </div>
                 <div className="button-container">
-                    <MyButton onClick={() => ApplyHandleClick(fullName, phone,email, password)}>Принять</MyButton>
+                    <MyButton onClick={ApplyHandleClick}>Принять</MyButton>
                 </div>
             </div>
 

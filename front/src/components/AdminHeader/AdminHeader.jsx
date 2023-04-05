@@ -11,10 +11,12 @@ const AdminHeader = () => {
         navigate("/admin");
     }
     return (
-        <div className={styles.Header}>
-            <div className={styles.HeaderContainer}>
-                <span className={styles.Logo} onClick={toHomehandleClick}>Today here</span>
-                <strong>{admin.currentAdmin.login}</strong>
+        <div>
+            <div className={styles.Header}>
+                <div className={styles.HeaderContainer}>
+                    <span className={styles.Logo} onClick={toHomehandleClick}>Today here</span>
+                    <strong>{admin.currentAdmin.login}</strong>
+                </div>
             </div>
         </div>
     );
