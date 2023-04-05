@@ -61,9 +61,12 @@ public class ReservationController {
                 }
 
             emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "New Reservation",
-                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s",
+                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s\nFullName:%6$s" +
+                                    " UserPhone:%7$s UserEmail:%8$s",
                             reservation.getDateIn(), reservation.getDateOut(), reservation.getRoom().getName(),
-                            reservation.getPassportNumber(), reservation.getPassportSeries()));
+                            reservation.getPassportNumber(), reservation.getPassportSeries(),
+                            reservation.getUser().getFullName(),
+                            reservation.getUser().getPhone(), reservation.getUser().getEmail()));
 
             Reservation _reservation = reservationRepository
                         .save(new Reservation(reservation.getDateIn(), reservation.getDateOut(),
@@ -119,9 +122,12 @@ public class ReservationController {
             Optional<Reservation> reservation = reservationRepository.findById(id);
             reservationRepository.deleteById(id);
             emailService.sendSimpleEmail(reservation.get().getRoom().getHotel().getEmail(), "Delet Reservation",
-                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s",
+                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s\nFullName:%6$s" +
+                                    " UserPhone:%7$s UserEmail:%8$s",
                             reservation.get().getDateIn(), reservation.get().getDateOut(), reservation.get().getRoom().getName(),
-                            reservation.get().getPassportNumber(), reservation.get().getPassportSeries()));
+                            reservation.get().getPassportNumber(), reservation.get().getPassportSeries(),
+                            reservation.get().getUser().getFullName(),
+                            reservation.get().getUser().getPhone(), reservation.get().getUser().getEmail()));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
