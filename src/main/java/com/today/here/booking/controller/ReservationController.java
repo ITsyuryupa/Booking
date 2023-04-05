@@ -116,7 +116,12 @@ public class ReservationController {
     @DeleteMapping("/reservation/{id}")
     public ResponseEntity<HttpStatus> deleteReservation(@PathVariable("id") long id) {
         try {
+            Optional<Reservation> reservation = reservationRepository.findById(id);
             reservationRepository.deleteById(id);
+            emailService.sendSimpleEmail(reservation.get().getRoom().getHotel().getEmail(), "Delet Reservation",
+                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s",
+                            reservation.get().getDateIn(), reservation.get().getDateOut(), reservation.get().getRoom().getName(),
+                            reservation.get().getPassportNumber(), reservation.get().getPassportSeries()));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
