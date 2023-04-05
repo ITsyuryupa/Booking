@@ -37,22 +37,30 @@ public class ReservationController {
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
         try {
                 if (reservation.getDateIn().equals(null)){
+                    System.out.println(1);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
                 } else if (reservation.getDateOut().equals(null)) {
+                    System.out.println(2);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 } else if (reservation.getRoom().equals(null)) {
+                    System.out.println(3);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 } else if (reservation.getUser().equals(null)) {
+                    System.out.println(4);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 } else if (reservation.getDateUser().equals(null) || Period.between(reservation.getDateUser(), LocalDate.now()).getYears() < 18) {
+                    System.out.println(5);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 } else if (reservation.getPassportSeries().equals(null)) {
+                    System.out.println(6);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 } else if (reservation.getPassportNumber().equals(null)) {
+                    System.out.println(7);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 }
             System.out.println(reservation.getRoom().getHotel().getEmail());
-            emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "Welcome", "This is a welcome email for your!!");
+            //emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "Welcome", "This is a welcome email for your!!");
 
             Reservation _reservation = reservationRepository
                         .save(new Reservation(reservation.getDateIn(), reservation.getDateOut(),
@@ -61,6 +69,7 @@ public class ReservationController {
 
 
         } catch (Exception e) {
+            System.out.println(e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
