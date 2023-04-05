@@ -59,8 +59,11 @@ public class ReservationController {
                     System.out.println(7);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 }
-            System.out.println(reservation.getRoom().getHotel().getEmail());
-            //emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "Welcome", "This is a welcome email for your!!");
+
+            emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "New Reservation",
+                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s",
+                            reservation.getDateIn(), reservation.getDateOut(), reservation.getRoom().getName(),
+                            reservation.getPassportNumber(), reservation.getPassportSeries()));
 
             Reservation _reservation = reservationRepository
                         .save(new Reservation(reservation.getDateIn(), reservation.getDateOut(),
