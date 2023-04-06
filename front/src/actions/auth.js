@@ -108,12 +108,37 @@ export const DeleteReservation = async (id) => {
     }
 }
 
-export const userUpdate = async (id, user) => {
-    console.log(id)
-    console.log(user)
+export const ChangeRoom = async (id, name, countBeds, costNight, count, hotel) => {
     try {
-        const response = await axios.put(`http://localhost:8080/api/user/update/` + id, {
-            user
+        const response = await axios.put(`http://localhost:8080/api/room/` + id,{
+            id, name, countBeds, costNight, count, hotel
+        })
+        alert("Вы успешно удалили бронь")
+        return true;
+    } catch (e) {
+        alert(e.response.data.message)
+        return false;
+    }
+}
+
+export const userUpdate = async (id, fullName, phone, email, password) => {
+    try {
+        const response = await axios.put(`http://localhost:8080/api/user/` + id, {
+            fullName,
+            phone,
+            email,
+            password
+        })
+        alert("Вы успешно обновили данные")
+        console.log(response)
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+export const createRoom = async (name, countBeds, costNight, count, hotel) => {
+    try {
+        const response = await axios.post(`http://localhost:8080/api/room/create`, {
+            count, name, countBeds, costNight, hotel
         })
         alert("Вы успешно обновили данные")
         console.log(response)

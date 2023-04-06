@@ -13,7 +13,6 @@ const AdminAddHotels = ({ onClose }) => {
     const [street, setStreet] = useState("");
     const [houseNumber, setHouseNumber] = useState("");
     const [description, setDescription] = useState("");
-    const [code, setCodes] = useState()
 
     const handleAddHotel = async () => {
         const success = await AddHotels(name, country, city, street, houseNumber, description, email);
@@ -25,7 +24,7 @@ const AdminAddHotels = ({ onClose }) => {
     return (
         <div>
             <div>
-                <text>Для бронирования введите данные</text>
+                <text>Добавление отеля</text>
                 <div>
                     <MyInput value={name} setValue={setName} type="text" placeholder="Название"/>
                 </div>

@@ -12,7 +12,6 @@ const AdminHotels = () => {
     const [results, setResults] = useState([])
     const [modalActive, setModalActive]=useState(false);
 
-
     useEffect(() => {
         axios.get('http://localhost:8080/api/hotel/all')
             .then(data => {
@@ -21,6 +20,9 @@ const AdminHotels = () => {
 
     }, [modalActive])
 
+    function toHotel(id) {
+        navigate(`/admin/hotel/${id}`)
+    }
     function Refresh(){
         navigate('/admin')
     }
@@ -50,7 +52,7 @@ const AdminHotels = () => {
                                 {results.map(result =>(
                                     <tr key={result.id}>
                                         <td className='AdminTbody'>{result.id}</td>
-                                        <td className='AdminTbody'>{result.name}</td>
+                                        <td className='AdminTbody' onClick={() => toHotel(result.id)}>{result.name}</td>
                                         <td className='AdminTbody'>{result.email}</td>
                                         <td className='AdminTbody'>{result.country}</td>
                                         <td className='AdminTbody'>{result.city}</td>

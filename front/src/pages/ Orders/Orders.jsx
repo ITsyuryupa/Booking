@@ -27,7 +27,7 @@ const Orders = () => {
             <Header></Header>
             {console.log(reservations)}
             {
-                reservations.map(reservation =>{
+                reservations.sort((a, b) => a.itemM > b.itemM ? 1 : -1).map(reservation =>{
                     return(
                         <OrderItem reservation={reservation} key={reservation.id}></OrderItem>
                     );

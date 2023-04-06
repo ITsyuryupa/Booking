@@ -20,7 +20,7 @@ const Profile = () => {
         navigate(-1)
     }
     function handleClick() {
-        userUpdate(user.currentUser.id, user.currentUser)
+        userUpdate(user.currentUser.id, name, phone, email, password)
         user.currentUser.fullName=name;
         user.currentUser.phone=phone;
         user.currentUser.email=email;
