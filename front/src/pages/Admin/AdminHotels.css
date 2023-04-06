@@ -1,0 +1,27 @@
+.AdminTable{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.AdminThead{
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.AdminTbody {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.AdminTableContainer{
+    width: 100%;
+    max-width: 1024px;
+}
+
+.AdminHeader{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}

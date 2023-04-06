@@ -1,55 +1,46 @@
 import React, {useState} from 'react';
-import classes from "./SearchBar.css"
+import MyButton from "../UI/button/MyButton";
+import DatePicker, {registerLocale} from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
+import ru from 'date-fns/locale/ru';
+import MyInput from "../UI/MyInput/MyInput";
+import './SearchBar.css'
 import {useNavigate} from "react-router-dom";
+registerLocale('ru', ru)
 const SearchBar = () => {
-    const [destination, setDestination] = useState("");
-    const [openDate, setOpenDate] = useState(false);
-    const [date, setDate] = useState([
-        {
-            startDate: new Date(),
-            endDate: new Date(),
-            key: "selection",
-        },
-    ]);
-    const [openOptions, setOpenOptions] = useState(false);
-    const [options, setOptions] = useState({
-        adult: 1,
-        children: 0,
-        room: 1,
-    });
     const navigate = useNavigate();
+    const [name, setName] = useState('Kazan');
+    const [startDate, setStartDate] = useState(new Date());
+    let tomorrow=new Date();
+    tomorrow.setDate(tomorrow.getDate()+1);
+    const [endDate, setEndDate] = useState(tomorrow);
 
-    const handleOption = (name, operation) => {
-        setOptions((prev) => {
-            return {
-                ...prev,
-                [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
-            };
-        });
-    };
-
-    const handleSearch = () => {
-        navigate("/hotels", { state: { destination, date, options } });
-    };
+    function handleClick() {
+        navigate(`/search/${name}`)
+    }
     return (
-        <div className={classes.SearchBar}>
-            <div className={classes.SearchContainer}>
-                <div className={classes.SearchNavigate}>
-                    <div className={classes.SearchItem}>
-                        <input
-                            type="text"
-                            placeholder="Куда вы хотите отправится?"
-                            className={classes.SearchInput}
+        <div className="header">
+            <div className="headerContainer">
+                <div className="searchHeader">
+                    <div className="searchContainer">
+                        <MyInput value={name} setValue={setName} type="text" placeholder="Город"/>
+                        <DatePicker selected={startDate}
+                                    onChange={date=>setStartDate(date)}
+                                    dateFormat='dd/MM/yyyy'
+                                    locale="ru"
+                                    className="searchInput"
+                                    placeholderText="Дата заезда"
                         />
-                    </div>
-                    <div className={classes.SearchItem}>
-                        <span className={classes.SearchNavegateText}>Дата заезда</span>
-                    </div>
-                    <div className={classes.SearchItem}>
-                        <span className={classes.SearchNavegateText}>Дата выезда</span>
-                    </div>
-                    <div className={classes.SearchItem}>
-                        <span className={classes.SearchNavegateText}>1 взрослый 0 детей</span>
+                        <DatePicker selected={endDate}
+                                    dateFormat='dd/MM/yyyy'
+                                    onChange={date=>setEndDate(date)}
+                                    locale="ru"
+                                    className="searchInput"
+                                    placeholderText="Дата выезда"
+                        />
+                        {localStorage.setItem('dateIn', (startDate))}
+                        {localStorage.setItem('dateOut', (endDate))}
+                            <MyButton onClick={handleClick}>Найти</MyButton>
                     </div>
                 </div>
             </div>

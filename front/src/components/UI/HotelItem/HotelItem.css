@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.Hotel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    border: 2px solid gray;
+    width: 100%;
+    max-width: 1024px;
+}
+.post__btns {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+}
