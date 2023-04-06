@@ -36,37 +36,40 @@ public class ReservationController {
     @PostMapping("/reservation/create")
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
         try {
-                if (reservation.getDateIn().equals(null)){
-                    System.out.println(1);
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            if (reservation.getDateIn().equals(null)){
+                System.out.println(1);
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 
-                } else if (reservation.getDateOut().equals(null)) {
-                    System.out.println(2);
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-                } else if (reservation.getRoom().equals(null)) {
-                    System.out.println(3);
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-                } else if (reservation.getUser().equals(null)) {
-                    System.out.println(4);
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-                } else if (reservation.getDateUser().equals(null) || Period.between(reservation.getDateUser(), LocalDate.now()).getYears() < 18) {
-                    System.out.println(5);
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-                } else if (reservation.getPassportSeries().equals(null)) {
-                    System.out.println(6);
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-                } else if (reservation.getPassportNumber().equals(null)) {
-                    System.out.println(7);
-                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-                }
+            } else if (reservation.getDateOut().equals(null)) {
+                System.out.println(2);
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            } else if (reservation.getRoom().equals(null)) {
+                System.out.println(3);
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            } else if (reservation.getUser().equals(null)) {
+                System.out.println(4);
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            } else if (reservation.getDateUser().equals(null) || Period.between(reservation.getDateUser(), LocalDate.now()).getYears() < 18) {
+                System.out.println(5);
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            } else if (reservation.getPassportSeries().equals(null)) {
+                System.out.println(6);
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            } else if (reservation.getPassportNumber().equals(null)) {
+                System.out.println(7);
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
+
             emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "New Reservation",
-                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s\nFullName:%6$s" +
-                                    " UserPhone:%7$s UserEmail:%8$s",
+                    String.format("""
+                                    DateIn: %1$s dateOut: %2$s
+                                    room:%3$s
+                                    passportNumber:%4$s passportSeries:%5$s
+                                    FullName:%6$s UserPhone:%7$s UserEmail:%8$s""",
                             reservation.getDateIn(), reservation.getDateOut(), reservation.getRoom().getName(),
                             reservation.getPassportNumber(), reservation.getPassportSeries(),
                             reservation.getUser().getFullName(),
                             reservation.getUser().getPhone(), reservation.getUser().getEmail()));
-
             Reservation _reservation = reservationRepository
                         .save(new Reservation(reservation.getDateIn(), reservation.getDateOut(),
                                 reservation.getRoom(), reservation.getUser(), reservation.getDateUser(), reservation.getPassportSeries(), reservation.getPassportNumber()));
@@ -121,8 +124,11 @@ public class ReservationController {
             Optional<Reservation> reservation = reservationRepository.findById(id);
             reservationRepository.deleteById(id);
             emailService.sendSimpleEmail(reservation.get().getRoom().getHotel().getEmail(), "Delet Reservation",
-                    String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s\nFullName:%6$s" +
-                                    " UserPhone:%7$s UserEmail:%8$s",
+                    String.format("""
+                                    DateIn: %1$s dateOut: %2$s
+                                    room:%3$s
+                                    passportNumber:%4$s passportSeries:%5$s
+                                    FullName:%6$s UserPhone:%7$s UserEmail:%8$s""",
                             reservation.get().getDateIn(), reservation.get().getDateOut(), reservation.get().getRoom().getName(),
                             reservation.get().getPassportNumber(), reservation.get().getPassportSeries(),
                             reservation.get().getUser().getFullName(),
