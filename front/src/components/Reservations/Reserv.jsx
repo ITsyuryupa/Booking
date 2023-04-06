@@ -15,7 +15,9 @@ const Reserv = ({...props}) => {
     const user = useSelector(state => state.user)
     const isAuth = useSelector(state => state.user.isAuth)
     const [name, setName] = useState(user.currentUser.fullName);
-    const [birthDate, setBirthDate] = useState();
+    let minAge=new Date();
+    minAge.setDate(minAge.getDate()-6576);
+    const [birthDate, setBirthDate] = useState(minAge);
     const [phone, setPhone] = useState(user.currentUser.phone);
     const [email, setEmail] = useState(user.currentUser.email);
     const [passportSeries, setPassportSeries] = useState();

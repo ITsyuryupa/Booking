@@ -23,3 +23,7 @@
     margin: 5px;
     display: flex;
 }
+.profile__btns_del {
+    margin: 200px;
+    display: flex;
+}

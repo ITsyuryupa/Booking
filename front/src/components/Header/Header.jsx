@@ -11,6 +11,7 @@ const Header = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const user = useSelector(state => state.user)
 
+
     function handleClick() {
         navigate("/login");
     }
