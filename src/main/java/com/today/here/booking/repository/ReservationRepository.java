@@ -20,6 +20,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     List<Reservation> findAllByUser(User user);
 
+    boolean existsByUser(User user);
+
     @Query(value = "SELECT * FROM reservations where user_id = ?1", nativeQuery = true)
     List<Reservation> findAllByUserId(@Param("userId") Long userId);
 }
