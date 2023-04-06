@@ -59,10 +59,6 @@ public class ReservationController {
                     System.out.println(7);
                     return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
                 }
-
-                if (reservationRepository.existsByUser(reservation.getUser())){
-                    return new ResponseEntity<>(HttpStatus.CONFLICT);
-                }
             emailService.sendSimpleEmail(reservation.getRoom().getHotel().getEmail(), "New Reservation",
                     String.format("DateIn: %1$s dateOut: %2$s\nroom:%3$s\npassportNumber:%4$s passportSeries:%5$s\nFullName:%6$s" +
                                     " UserPhone:%7$s UserEmail:%8$s",
