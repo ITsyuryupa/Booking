@@ -20,3 +20,5 @@
 /target/classes/com/today/here/booking/model/User.class
 /target/classes/com/today/here/booking/controller/UserController.class
 /target/classes/com/today/here/booking/repository/UserRepository.class
+/.idea/
+/.idea/
