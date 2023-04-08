@@ -15,8 +15,6 @@ public class FileHotel {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    private String name;
-
     private String type;
 
     @Lob
@@ -31,22 +29,14 @@ public class FileHotel {
     public FileHotel() {
     }
 
-    public FileHotel(String name, String type, byte[] data) {
-        this.name = name;
+    public FileHotel(String type, byte[] data, Hotel hotel) {
         this.type = type;
         this.data = data;
+        this.hotel = hotel;
     }
 
     public String getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getType() {
@@ -65,5 +55,12 @@ public class FileHotel {
         this.data = data;
     }
 
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
 }
 

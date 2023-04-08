@@ -22,3 +22,6 @@
 /target/classes/com/today/here/booking/repository/UserRepository.class
 /.idea/
 /target/classes/com/today/here/booking/model/FileHotel.class
+/target/classes/com/today/here/booking/controller/FileController.class
+/target/classes/com/today/here/booking/repository/FileHotelRepository.class
+/target/classes/com/today/here/booking/service/FileStorageService.class
