@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "fileHotel")
+@Table(name = "file_hotel")
 public class FileHotel {
     @Id
     @GeneratedValue(generator = "uuid")
