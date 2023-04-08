@@ -42,6 +42,9 @@ public class Hotel implements Serializable {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private Set<Room> rooms = new HashSet<>();
 
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private Set<FileHotel> fileHotels = new HashSet<>();
+
     public Hotel() {
 
     }

@@ -1,11 +1,9 @@
 package com.today.here.booking.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,6 +21,12 @@ public class FileHotel {
 
     @Lob
     private byte[] data;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "hotel_id")
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @JsonIgnoreProperties("hibernateLazyInitializer")
+    private Hotel hotel;
 
     public FileHotel() {
     }
