@@ -1,10 +1,12 @@
 package com.today.here.booking.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.today.here.booking.model.Hotel;
 import com.today.here.booking.model.Room;
+import com.today.here.booking.model.User;
 import com.today.here.booking.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -46,5 +48,17 @@ public class FileController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
                 .body(fileHotel.getData());
+    }
+
+    @GetMapping("/getid/hotel/{hotel_id}")
+    public ResponseEntity<List<String>> getAllIdByHotelId(@PathVariable("hotel_id") long id) {
+        try {
+            List<String> filesId = fileStorageService.getAllIdByHotelId(id);
+            return new ResponseEntity<>(filesId, HttpStatus.OK);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

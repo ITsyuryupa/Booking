@@ -3,6 +3,7 @@ package com.today.here.booking.service;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Stream;
 
 import com.today.here.booking.model.Hotel;
@@ -38,6 +39,10 @@ public class FileStorageService {
 
     public Stream<FileHotel> getAllFiles() {
         return fileHotelRepository.findAll().stream();
+    }
+
+    public List<String> getAllIdByHotelId(long id) {
+        return fileHotelRepository.findAllIdByHotelId(id);
     }
 }
 
