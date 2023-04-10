@@ -8,28 +8,29 @@ import OrderItem from "./OrderItem";
 const Orders = () => {
     const [reservations, setReservations] = useState([])
     const user = useSelector(state => state.user)
-    const daka = {
-        "user_id":  user.currentUser.id
-    };
+    const [refresh, setRefresh] = useState(false);
+
+
     useEffect(() => {
         console.log("pognali")
-        axios.get('http://localhost:8080/api/reservation/getall',{
-            params: daka
-        })
+        axios.get('http://localhost:8080/api/reservation/getall/' + user.currentUser.id)
             .then(data => {
                 setReservations(data.data);
             })
 
-    }, [])
+    }, [refresh])
+
+    const handleRefresh = () => {
+        setRefresh(!refresh);
+    }
+
     return (
 
         <div>
             <Header></Header>
-            {console.log(reservations)}
-            {
-                reservations.sort((a, b) => a.itemM > b.itemM ? 1 : -1).map(reservation =>{
+            {reservations.sort((a, b) => a.itemM > b.itemM ? 1 : -1).map(reservation =>{
                     return(
-                        <OrderItem reservation={reservation} key={reservation.id}></OrderItem>
+                        <OrderItem reservation={reservation} key={reservation.id} refreshOrders={handleRefresh}></OrderItem>
                     );
                 })
             }

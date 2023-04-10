@@ -25,3 +25,11 @@
     display: flex;
     justify-content: center;
 }
+
+.ButtonsContainer{
+    display: flex;
+    align-items: center;
+}
+.Buttons{
+    margin-left: 20px;
+}

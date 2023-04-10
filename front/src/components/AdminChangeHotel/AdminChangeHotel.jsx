@@ -14,11 +14,12 @@ const AdminChangeHotel = ({...props}) => {
     const [street, setStreet] = useState(props.hotel.street);
     const [houseNumber, setHouseNumber] = useState(props.hotel.houseNumber);
     const [description, setDescription] = useState(props.hotel.description);
+    console.log(props.modalActive)
 
     const handleChangeHotel = async () => {
         const success = await UpdateHotel(props.hotel.id, name, country, city, street, houseNumber, description, email);
         if (success) {
-            navigate('/admin/hotels');
+            props.closeModal();
         }
     }
     return (

@@ -10,13 +10,21 @@ registerLocale('ru', ru)
 const SearchBar = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('Kazan');
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState();
     let tomorrow=new Date();
     tomorrow.setDate(tomorrow.getDate()+1);
-    const [endDate, setEndDate] = useState(tomorrow);
+    const [endDate, setEndDate] = useState();
 
     function handleClick() {
-        navigate(`/search/${name}`)
+        if (startDate && endDate) {
+            if (endDate <= startDate)
+            {
+                alert("Дата выезда не должна равняться или быть меньше даты заезда")}
+            else{
+            navigate(`/search/${name}`)}
+        }
+        else {
+            alert("Сначала выберте даты поездки")}
     }
     return (
         <div className="header">

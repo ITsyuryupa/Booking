@@ -18,7 +18,7 @@ const Profile = () => {
     const [name, setName] = useState(user.currentUser.fullName);
     const [phone, setPhone] = useState(user.currentUser.phone);
     const [email, setEmail] = useState(user.currentUser.email);
-    const [password, setPassword] = useState(user.currentUser.email);
+    const [password, setPassword] = useState(user.currentUser.password);
     const [modalActive, setModalActive]=useState(false);
     if (!isAuth)
     {

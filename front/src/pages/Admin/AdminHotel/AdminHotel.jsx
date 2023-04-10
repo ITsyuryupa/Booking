@@ -10,6 +10,7 @@ import AdminAddRoom from "../../../components/AdminChangeRoom/AdminAddRoom";
 import AlternativeButton from "../../../components/UI/button/AlternativeButton";
 import AdminDeleteHotel from "../../../components/AdminDeleteHotel/AdminDeleteHotel";
 import AdminDeleteRoom from "../../../components/AdminChangeRoom/AdminDeleteRoom";
+import {closeModal} from "../../../components/utils/closeModal";
 
 const AdminHotel = () => {
     const navigate=useNavigate()
@@ -48,8 +49,14 @@ const AdminHotel = () => {
             <main>
                 <AdminHeader></AdminHeader>
                 <div className="AdminHeader">
-                    <MyButton onClick={Back}>Назад</MyButton>
-                    <MyButton  onClick={()=> setSecondModalActive((true))}>Добавить комнату</MyButton>
+                    <div className="ButtonsContainer">
+                        <div className="Buttons">
+                            <MyButton onClick={Back}>Назад</MyButton>
+                        </div>
+                        <div className="Buttons">
+                            <MyButton  onClick={()=> setSecondModalActive((true))}>Добавить комнату</MyButton>
+                        </div>
+                    </div>
                 </div>
                 <div className='AdminHeader'>
                     <div className='AdminTableContainer'>
@@ -84,13 +91,13 @@ const AdminHotel = () => {
                 </div>
             </main>
             <Modal active={modalActive} setActive={setModalActive}>
-                {modalActive != false && <AdminChangeRoom room={forChangeRoom}></AdminChangeRoom>}
+                {modalActive != false && <AdminChangeRoom room={forChangeRoom} closeModal={()=>closeModal(setModalActive)}></AdminChangeRoom>}
             </Modal>
             <Modal active={secondModalActive} setActive={setSecondModalActive}>
                 {secondModalActive != false && <AdminAddRoom hotelId={params.id}></AdminAddRoom>}
             </Modal>
             <Modal active={thirdModalActive} setActive={setThirdModalActive}>
-                {thirdModalActive != false && <AdminDeleteRoom room={forChangeRoom}></AdminDeleteRoom>}
+                {thirdModalActive != false && <AdminDeleteRoom room={forChangeRoom} closeModal={()=>closeModal(setModalActive)}></AdminDeleteRoom>}
             </Modal>
         </div>
     );

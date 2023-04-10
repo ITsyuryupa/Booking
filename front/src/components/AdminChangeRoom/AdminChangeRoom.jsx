@@ -18,7 +18,7 @@ const AdminChangeRoom = ({onClose,...props}) => {
         const hotel = props.room.hotel
         const success = await ChangeRoom(props.room.id, name, countBeds, costNight, count, hotel);
         if (success) {
-            navigate('/admin/hotel/'+props.room.hotel.id);
+            props.closeModal();
         }
     }
     return (

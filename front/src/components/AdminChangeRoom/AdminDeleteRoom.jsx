@@ -7,6 +7,8 @@ const AdminDeleteRoom = ({...props}) => {
     const navigate = useNavigate();
     const deleteRoom = async () => {
         const success = await DeleteRoom(props.room.id);
+        if (success)
+            props.closeModal();
     }
     return (
         <div>

@@ -8,7 +8,7 @@ const AdminDeleteHotel = ({...props}) => {
     const deleteHotel = async () => {
         const success = await DeleteHotel(props.hotel.id);
         if (success) {
-            navigate('/admin/hotels');
+            props.closeModal();
         }
     }
     return (

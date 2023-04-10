@@ -8,6 +8,7 @@ import AdminAddHotels from "../../components/AdminAddHotels/AdminAddHotels";
 import {useNavigate} from "react-router-dom";
 import AdminChangeHotel from "../../components/AdminChangeHotel/AdminChangeHotel";
 import AdminDeleteHotel from "../../components/AdminDeleteHotel/AdminDeleteHotel";
+import {closeModal} from "../../components/utils/closeModal";
 
 const AdminHotels = () => {
     const navigate=useNavigate()
@@ -97,10 +98,10 @@ const AdminHotels = () => {
                 <AdminAddHotels></AdminAddHotels>
             </Modal>
             <Modal active={secondModalActive} setActive={setSecondModalActive}>
-                {secondModalActive != false && <AdminChangeHotel hotel={forChangeHotel}></AdminChangeHotel>}
+                {secondModalActive != false && <AdminChangeHotel hotel={forChangeHotel} closeModal={()=>closeModal(setSecondModalActive)}></AdminChangeHotel>}
             </Modal>
             <Modal active={thirdModalActive} setActive={setThirdModalActive}>
-                {thirdModalActive != false && <AdminDeleteHotel hotel={forChangeHotel}></AdminDeleteHotel>}
+                {thirdModalActive != false && <AdminDeleteHotel hotel={forChangeHotel} closeModal={()=>closeModal(setThirdModalActive)}></AdminDeleteHotel>}
             </Modal>
         </div>
     );

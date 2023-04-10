@@ -30,10 +30,11 @@ export const login =  (phone, password) => {
                 password
             })
             dispatch(setUser(response.data))
-
+            return true
             localStorage.setItem('user', response.data)
         } catch (e) {
             alert(e.response.data.message)
+            return false
         }
     }
 }
@@ -47,10 +48,9 @@ export const adminLogin =  (login, password) => {
                 password
             })
             dispatch(setAdmin(response.data))
-
             localStorage.setItem('admin', response.data)
         } catch (e) {
-            alert(e.response.data.message)
+            alert("Неверное имя или пароль")
         }
     }
 }
@@ -149,7 +149,7 @@ export const ChangeRoom = async (id, name, countBeds, costNight, count, hotel) =
         const response = await axios.put(`http://localhost:8080/api/room/` + id,{
             id, name, countBeds, costNight, count, hotel
         })
-        alert("Вы успешно удалили бронь")
+        alert("Вы успешно изменили комнату")
         return true;
     } catch (e) {
         alert(e.response.data.message)
