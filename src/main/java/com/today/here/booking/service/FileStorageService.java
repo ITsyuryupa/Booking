@@ -27,7 +27,6 @@ public class FileStorageService {
     public FileHotel store(MultipartFile file, Long hotel_id) throws IOException {
 
         Hotel hotel = hotelRepository.findHotelById(hotel_id);
-        System.out.println(hotel.getName());
         FileHotel fileHotel = new FileHotel(file.getContentType(), file.getBytes(), hotel);
 
         return fileHotelRepository.save(fileHotel);

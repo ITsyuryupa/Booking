@@ -19,12 +19,13 @@ import com.today.here.booking.model.FileHotel;
 
 @Controller
 @CrossOrigin("http://localhost:3000")
+@RequestMapping("/api/file")
 public class FileController {
 
     @Autowired
     private FileStorageService fileStorageService;
 
-    @PostMapping("/upload")
+    @PostMapping("/upload/hotel")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("hotel_id") long id) {
         String message = "";
         try {
@@ -36,5 +37,14 @@ public class FileController {
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
+    }
+
+    @GetMapping("/hotel/{id}")
+    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+        FileHotel fileHotel = fileStorageService.getFile(id);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
+                .body(fileHotel.getData());
     }
 }
