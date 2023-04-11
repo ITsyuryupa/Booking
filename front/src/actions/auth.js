@@ -50,7 +50,7 @@ export const adminLogin =  (login, password) => {
             dispatch(setAdmin(response.data))
             localStorage.setItem('admin', response.data)
         } catch (e) {
-            alert("Неверное имя или пароль")
+            alert("Неверный логин или пароль")
         }
     }
 }

@@ -7,12 +7,13 @@ import UploadFiles from "../UploadFiles/UploadFiles";
 import {useNavigate, useParams} from "react-router-dom";
 import './AdminFileList.css'
 const AdminFileList = () => {
+
     const params = useParams();
     const navigate=useNavigate();
     const [fileIds, setFileIds] = useState([]);
     const [files, setFiles] = useState([]);
     const [modalActive, setModalActive]=useState(false);
-
+    console.log(params.id)
     function Back() {
         navigate('/admin/hotels')
     }
@@ -82,7 +83,7 @@ const AdminFileList = () => {
                     </ul>
                 </div>
                 <Modal active={modalActive} setActive={setModalActive}>
-                    <UploadFiles nameId='hotel_id' id='1' type='hotel'></UploadFiles>
+                    <UploadFiles nameId='hotel_id' id={params.id} type='hotel'></UploadFiles>
                 </Modal>
             </div>
         </div>
