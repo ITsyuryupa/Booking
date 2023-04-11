@@ -31,7 +31,6 @@ const AdminFileList = () => {
 
         getFileIds();
     }, [params.id]);
-    console.log(modalActive)
 
     useEffect(() => {
         const getFiles = async () => {
