@@ -10,7 +10,8 @@ import {
     PROFILE_ROUTE,
     REGISTRATION_ROUTE,
     ROOMS_ROUTE,
-    SEARCH_ROUTE
+    SEARCH_ROUTE,
+    HOTELFILES_ROUTE
 } from "./utils/consts";
 import Login from "./pages/Auth/Login/Login";
 import Home from "./pages/Home/Home";
@@ -23,6 +24,7 @@ import AdminAuth from "./pages/Admin/AdminAuth/AdminAuth";
 import AdminHotels from "./pages/Admin/AdminHotels";
 import AdminUsersList from "./pages/Admin/AdminUsersList/AdminUsersList";
 import AdminHotel from "./pages/Admin/AdminHotel/AdminHotel";
+import AdminFileList from "./components/AdminFileList/AdminFileList";
 
 export const authRoutes = [
     {
@@ -51,6 +53,10 @@ export const adminRoutes = [
     {
         path: ADMINHOTEL_ROUTE,
         Component: AdminHotel
+    },
+    {
+        path: HOTELFILES_ROUTE,
+        Component: AdminFileList
     },
 ]
 

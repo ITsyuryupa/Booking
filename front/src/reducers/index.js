@@ -8,7 +8,7 @@ import adminReducer from "./adminReducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
-    admin: adminReducer
+    admin: adminReducer,
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

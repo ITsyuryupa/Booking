@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.HeaderContainer{
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.caption-container {
+    text-align: center;
+}
+
+.file-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.file-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}
+
+.file-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.Buttons{
+    margin-left: 20px;
+}

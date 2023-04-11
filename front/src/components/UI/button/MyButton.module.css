@@ -2,10 +2,14 @@
     margin-top: 0px;
     cursor: pointer;
     font-size: 15px;
-    background: gray;
-    border: 1px solid gray;
+    background-color: gray;
+    border: none;
     color: #000000;
     padding: 3px 15px;
     border-radius: 5px;
+}
+.myBtn:hover {
+    background-color: darkgray;
+
 }
 
