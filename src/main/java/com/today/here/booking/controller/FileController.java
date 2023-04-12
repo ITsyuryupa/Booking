@@ -31,7 +31,7 @@ public class FileController {
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("hotel_id") long id) {
         String message = "";
         try {
-            fileStorageService.store(file, id);
+            fileStorageService.storeHotel(file, id);
             message = "Uploaded the file successfully";
             return ResponseEntity.status(HttpStatus.OK).body(message);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class FileController {
 
     @GetMapping("/hotel/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-        FileHotel fileHotel = fileStorageService.getFile(id);
+        FileHotel fileHotel = fileStorageService.getFileHotel(id);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
@@ -53,7 +53,7 @@ public class FileController {
     @GetMapping("/getid/hotel/{hotel_id}")
     public ResponseEntity<List<String>> getAllIdByHotelId(@PathVariable("hotel_id") long id) {
         try {
-            List<String> filesId = fileStorageService.getAllIdByHotelId(id);
+            List<String> filesId = fileStorageService.getAllFileHotelByHotelId(id);
             return new ResponseEntity<>(filesId, HttpStatus.OK);
 
         } catch (Exception e) {

@@ -25,7 +25,7 @@ public class FileStorageService {
     @Autowired
     private HotelRepository hotelRepository;
 
-    public FileHotel store(MultipartFile file, Long hotel_id) throws IOException {
+    public FileHotel storeHotel(MultipartFile file, Long hotel_id) throws IOException {
 
         Hotel hotel = hotelRepository.findHotelById(hotel_id);
         FileHotel fileHotel = new FileHotel(file.getContentType(), file.getBytes(), hotel);
@@ -33,15 +33,11 @@ public class FileStorageService {
         return fileHotelRepository.save(fileHotel);
     }
 
-    public FileHotel getFile(String id) {
+    public FileHotel getFileHotel(String id) {
         return fileHotelRepository.findById(id).get();
     }
 
-    public Stream<FileHotel> getAllFiles() {
-        return fileHotelRepository.findAll().stream();
-    }
-
-    public List<String> getAllIdByHotelId(long id) {
+    public List<String> getAllFileHotelByHotelId(long id) {
         return fileHotelRepository.findAllIdByHotelId(id);
     }
 }
