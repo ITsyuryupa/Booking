@@ -22,21 +22,26 @@ const Reserv = ({...props}) => {
     const [email, setEmail] = useState(user.currentUser.email);
     const [passportSeries, setPassportSeries] = useState();
     const [passportNumber, setPassportNumber] = useState();
+    const [isDisabled, setIsDisabled] = useState(false);
 
 
     let dateIn= format(new Date((localStorage.getItem('dateIn'))),"yyyy-MM-dd")
     let dateOut= format(new Date((localStorage.getItem('dateOut'))),"yyyy-MM-dd")
+
     const handleClick = async () =>  {
         if (!isAuth) {
             navigate("/login")
             alert("Необходимо войти в аккаунт")
         }
         else {
-            let BirthInFormat=format((birthDate),"yyyy-MM-dd")
-            const success = await reservation(dateIn, dateOut, props.room,user.currentUser, BirthInFormat, passportSeries, passportNumber);
+            setIsDisabled(true);
+            let BirthInFormat = format((birthDate), "yyyy-MM-dd")
+            const success = await reservation(dateIn, dateOut, props.room, user.currentUser, BirthInFormat, passportSeries, passportNumber);
             if (success) {
-                console.log("Успех нименуем")
-                navigate('/');
+                props.closeModal();
+                setIsDisabled(false);
+            } else {
+                setIsDisabled(false);
             }
         }
 
@@ -74,8 +79,7 @@ const Reserv = ({...props}) => {
                     <MyInput value={passportNumber} setValue={setPassportNumber} type="text" placeholder="Номер паспорта"/>
                 </div>
                 <div>
-
-                    <MyButton onClick={handleClick}>Забранирвать</MyButton>
+                    <MyButton onClick={handleClick} disabled={isDisabled}>Забронирвать</MyButton>
                 </div>
             </div>
         </div>

@@ -10,6 +10,7 @@ const Registration = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
+    const [isDisabled, setIsDisabled] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,9 +20,13 @@ const Registration = () => {
         navigate("/");}
 
     const ApplyHandleClick = async () => {
+        setIsDisabled(true);
         const success = await registration(fullName, phone, email, password);
         if (success) {
-            navigate('/');
+            const logins=await dispatch(login(phone, password))
+        }
+        else {
+            setIsDisabled(false);
         }
     }
     return (
@@ -44,7 +49,7 @@ const Registration = () => {
                     <MyInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль" />
                 </div>
                 <div className="button-container">
-                    <MyButton onClick={ApplyHandleClick}>Принять</MyButton>
+                    <MyButton onClick={ApplyHandleClick} disabled={isDisabled}>Принять</MyButton>
                 </div>
             </div>
 

@@ -4,6 +4,7 @@ export const ADMINHOTELS_ROUTE='/admin/hotels'
 export const ADMINUSERSLIST_ROUTE='/admin/users'
 
 export const ADMINHOTEL_ROUTE='/admin/hotel/:id'
+export const HOTELFILES_ROUTE='/admin/files/:type/:id'
 export const LOGIN_ROUTE='/login'
 export const REGISTRATION_ROUTE='/registration'
 

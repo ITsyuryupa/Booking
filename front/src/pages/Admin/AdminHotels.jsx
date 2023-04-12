@@ -8,6 +8,8 @@ import AdminAddHotels from "../../components/AdminAddHotels/AdminAddHotels";
 import {useNavigate} from "react-router-dom";
 import AdminChangeHotel from "../../components/AdminChangeHotel/AdminChangeHotel";
 import AdminDeleteHotel from "../../components/AdminDeleteHotel/AdminDeleteHotel";
+import {closeModal} from "../../components/utils/closeModal";
+import AdminFileList from "../../components/AdminFileList/AdminFileList";
 
 const AdminHotels = () => {
     const navigate=useNavigate()
@@ -16,6 +18,7 @@ const AdminHotels = () => {
     const [secondModalActive, setSecondModalActive]=useState(false)
     const [thirdModalActive, setThirdModalActive]=useState(false)
     const [forChangeHotel, setForChangeHotel] = useState('')
+
 
 
     useEffect(() => {
@@ -44,6 +47,9 @@ const AdminHotels = () => {
     function toHotel(id) {
         navigate(`/admin/hotel/${id}`)
     }
+    function toFiles(id) {
+        navigate(`/admin/files/hotel/${id}`)
+    }
     function Refresh(){
         navigate('/admin')
     }
@@ -69,6 +75,7 @@ const AdminHotels = () => {
                                     <th className='AdminTbody'>Описание</th>
                                     <th className='AdminTbody'>Комнаты</th>
                                     <th className='AdminTbody'>Изменить</th>
+                                    <th className='AdminTbody'>Фотографии</th>
                                     <th className='AdminTbody'>Удалить</th>
                                 </tr>
                             </thead>
@@ -85,6 +92,7 @@ const AdminHotels = () => {
                                         <td className='AdminTbody'>{result.description}</td>
                                         <td className='AdminTbody'><MyButton onClick={() => toHotel(result.id)}>Комнаты</MyButton></td>
                                         <td className='AdminTbody'><MyButton onClick={()=> ChangeHotel(result)}>Изменить</MyButton></td>
+                                        <td className='AdminTbody'><MyButton onClick={() => toFiles(result.id)}>Фотографии</MyButton></td>
                                         <td className='AdminTbody'><MyButton onClick={()=> DeleteHotel(result)}>Удалить</MyButton></td>
                                     </tr>
                                     ))}
@@ -97,10 +105,10 @@ const AdminHotels = () => {
                 <AdminAddHotels></AdminAddHotels>
             </Modal>
             <Modal active={secondModalActive} setActive={setSecondModalActive}>
-                {secondModalActive != false && <AdminChangeHotel hotel={forChangeHotel}></AdminChangeHotel>}
+                {secondModalActive != false && <AdminChangeHotel hotel={forChangeHotel} closeModal={()=>closeModal(setSecondModalActive)}></AdminChangeHotel>}
             </Modal>
             <Modal active={thirdModalActive} setActive={setThirdModalActive}>
-                {thirdModalActive != false && <AdminDeleteHotel hotel={forChangeHotel}></AdminDeleteHotel>}
+                {thirdModalActive != false && <AdminDeleteHotel hotel={forChangeHotel} closeModal={()=>closeModal(setThirdModalActive)}></AdminDeleteHotel>}
             </Modal>
         </div>
     );

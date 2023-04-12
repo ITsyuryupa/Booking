@@ -1,0 +1,42 @@
+.drop-area{
+    border: 2px dashed #fff;
+    height: 500px;
+    width: 700px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.drop-area.active{
+    border: 2px solid #fff
+}
+.drag-area input {
+    display: none;
+}
+.delete-button {
+    font-size: 24px;
+    color: gray;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.delete-button::before {
+    content: '×';
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: gray;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+.upload-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+}
+.upload-button:hover {
+    background-color: #3e8e41;
+}

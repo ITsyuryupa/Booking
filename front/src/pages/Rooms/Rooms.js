@@ -6,14 +6,18 @@ import "./Rooms.css"
 import MyButton from "../../components/UI/button/MyButton";
 import {format} from "date-fns";
 import Header from "../../components/Header/Header";
+import {useSelector} from "react-redux";
 
 const Rooms = () => {
-    const params = useParams()
+    const params = useParams();
+    const isAuth = useSelector(state => state.user.isAuth);
     const navigate = useNavigate();
-    const [Hotel, setHotel] = useState([])
-    const [rooms, setRooms] = useState([])
-    let dateIn= format(new Date((localStorage.getItem('dateIn'))),"yyyy-MM-dd")
-    let dateOut= format(new Date((localStorage.getItem('dateOut'))),"yyyy-MM-dd")
+    const [Hotel, setHotel] = useState([]);
+    const [rooms, setRooms] = useState([]);
+    let dateIn= format(new Date((localStorage.getItem('dateIn'))),"yyyy-MM-dd");
+    let dateOut= format(new Date((localStorage.getItem('dateOut'))),"yyyy-MM-dd");
+
+
     const dta = {
         "dateIn": dateIn,
         "dateOut": dateOut,

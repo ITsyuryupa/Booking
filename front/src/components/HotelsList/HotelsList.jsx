@@ -12,9 +12,6 @@ const HotelsList = (...props) => {
     let dateIn= format(new Date((localStorage.getItem('dateIn'))),"yyyy-MM-dd")
     let dateOut= format(new Date((localStorage.getItem('dateOut'))),"yyyy-MM-dd")
     let city = params.id
-    console.log(dateIn)
-    console.log(dateOut)
-    const [results, setResults] = useState([])
     const [dHotels, setDHotels] = useState([])
 
     // useEffect(() => {
