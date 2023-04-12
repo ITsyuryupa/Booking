@@ -63,7 +63,7 @@ public class FileStorageService {
         return fileRoomRepository.findById(id).get();
     }
 
-    public List<String> getAllFileRoomByHotelId(long id) {
+    public List<String> getAllFileRoomByRoomId(long id) {
         return fileRoomRepository.findAllIdByRoomId(id);
     }
 }
