@@ -13,9 +13,8 @@ const AdminFileList = () => {
     const [fileIds, setFileIds] = useState([]);
     const [files, setFiles] = useState([]);
     const [modalActive, setModalActive]=useState(false);
-    console.log(params.id)
     function Back() {
-        navigate('/admin/hotels')
+        navigate(-1)
     }
 
     useEffect(() => {
@@ -56,6 +55,8 @@ const AdminFileList = () => {
             getFiles();
         }
     }, [fileIds]);
+
+
     return (
         <div className='header'>
             <div className='HeaderContainer'>
@@ -75,6 +76,7 @@ const AdminFileList = () => {
                                 <img src={file.url} alt={`file-${file.id}`} />
                                 <div className='button-container'>
                                     <div>
+                                        {console.log(file.id)}
                                         <MyButton>Удалить фотографию</MyButton>
                                     </div>
                                 </div>
@@ -83,7 +85,8 @@ const AdminFileList = () => {
                     </ul>
                 </div>
                 <Modal active={modalActive} setActive={setModalActive}>
-                    <UploadFiles nameId='hotel_id' id={params.id} type='hotel'></UploadFiles>
+                    {params.type=='hotel' && <UploadFiles nameId='hotel_id' id={params.id} type='hotel'></UploadFiles>}
+                    {params.type=='room' && <UploadFiles nameId='room_id' id={params.id} type='room'></UploadFiles>}
                 </Modal>
             </div>
         </div>

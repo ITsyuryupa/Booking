@@ -1,12 +1,54 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Rooms.css'
 import MyButton from "../../components/UI/button/MyButton";
 import Modal from "../../components/UI/Modal/Modal";
 import Reserv from "../../components/Reservations/Reserv";
 import {closeModal} from "../../components/utils/closeModal";
-import {useSelector} from "react-redux";
+import axios from "axios";
+import {Swiper, SwiperSlide} from "swiper/react";
 const RoomItem = ({...props}) => {
     const [modalActive, setModalActive]=useState(false);
+    const [fileIds, setFileIds] = useState([]);
+    const [files, setFiles] = useState([]);
+    {console.log(props.room.id)}
+
+    useEffect(() => {
+        const getFileIds = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/file/getid/room/${props.room.id}`);
+                setFileIds(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        getFileIds();
+    }, [props.id]);
+
+    useEffect(() => {
+        const getFiles = async () => {
+            try {
+                const promises = fileIds.map(async (id) => {
+                    const response = await axios({
+                        method: 'get',
+                        url: `http://localhost:8080/api/file/room/${id}`,
+                        responseType: 'blob',
+                    });
+                    const fileUrl = window.URL.createObjectURL(new Blob([response.data]));
+                    return { id, url: fileUrl };
+                });
+                const files = await Promise.all(promises);
+                setFiles(files);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        if (fileIds.length > 0) {
+            getFiles();
+        }
+    }, [fileIds]);
+
 
     return (
         <div>
@@ -20,6 +62,22 @@ const RoomItem = ({...props}) => {
                         <div className='room__btns'>
                             <MyButton onClick={()=> setModalActive((true))}>Зарезервировать</MyButton>
                         </div>
+                        {files.length > 0 && (
+                            <Swiper
+                                className="swiper-container"
+                                slidesPerView={1}
+                                navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
+                                pagination={{ clickable: true }}
+                            >
+                                {files.map((file) => (
+                                    <SwiperSlide className="swiper-slide" key={file.id}>
+                                        <img src={file.url} alt="" />
+                                    </SwiperSlide>
+                                ))}
+                                <div className="swiper-button-prev"></div>
+                                <div className="swiper-button-next"></div>
+                            </Swiper>
+                        )}
                     </div>
                 </div>
             </main>

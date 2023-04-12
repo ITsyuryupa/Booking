@@ -37,6 +37,11 @@ const AdminHotel = () => {
             setModalActive((true))
         }
     }
+
+    function toFiles(id) {
+        navigate(`/admin/files/room/${id}`)
+    }
+
     function DeleteRoom(room){
         console.log(Object.keys(room).length)
         if ( Object.keys(room).length !== 0){
@@ -69,6 +74,7 @@ const AdminHotel = () => {
                                 <th className='AdminTbody'>Цена за ночь</th>
                                 <th className='AdminTbody'>Кол-во</th>
                                 <th className='AdminTbody'>Изменить</th>
+                                <th className='AdminTbody'>Фотографии</th>
                                 <th className='AdminTbody'>Удалить</th>
                             </tr>
                             </thead>
@@ -82,6 +88,7 @@ const AdminHotel = () => {
                                     <td className='AdminTbody'>{result.costNight}</td>
                                     <td className='AdminTbody'>{result.count}</td>
                                     <td className='AdminTbody'><MyButton onClick={()=> ChangeRoom(result)}>Изменить</MyButton></td>
+                                    <td className='AdminTbody'><MyButton onClick={() => toFiles(result.id)}>Фотографии</MyButton></td>
                                     <td className='AdminTbody'><MyButton onClick={()=> DeleteRoom(result)}>Удалить</MyButton></td>
                                 </tr>
                             ))}
