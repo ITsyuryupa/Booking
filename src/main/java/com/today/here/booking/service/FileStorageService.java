@@ -66,5 +66,13 @@ public class FileStorageService {
     public List<String> getAllFileRoomByRoomId(long id) {
         return fileRoomRepository.findAllIdByRoomId(id);
     }
+
+    public void deleteFileRoom(String id) {
+        fileRoomRepository.deleteById(id);
+    }
+
+    public void deleteFileHotel(String id) {
+        fileHotelRepository.deleteById(id);
+    }
 }
 
