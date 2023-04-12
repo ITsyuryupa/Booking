@@ -56,6 +56,13 @@ const AdminFileList = () => {
         }
     }, [fileIds]);
 
+    const handleDeletePhoto = (id) => {
+        axios.delete(`http://localhost:8080/api/file/${params.type}/${id}`)
+            .then(response => {
+                setFileIds(prevPhotoIds => prevPhotoIds.filter(photoId => photoId !== id));
+            })
+            .catch(error => console.log(error));
+    }
 
     return (
         <div className='header'>
@@ -77,7 +84,7 @@ const AdminFileList = () => {
                                 <div className='button-container'>
                                     <div>
                                         {console.log(file.id)}
-                                        <MyButton>Удалить фотографию</MyButton>
+                                        <MyButton  onClick={() => handleDeletePhoto(file.id)}>Удалить фотографию</MyButton>
                                     </div>
                                 </div>
                             </li>
