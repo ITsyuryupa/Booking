@@ -36,6 +36,9 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private Set<Reservation> reservations = new HashSet<>();
 
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private Set<FileRoom> fileRoom = new HashSet<>();
+
     public Room() {
 
     }
