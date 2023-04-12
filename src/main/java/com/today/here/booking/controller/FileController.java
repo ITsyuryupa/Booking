@@ -92,4 +92,24 @@ public class FileController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/room/{id}")
+    public ResponseEntity<HttpStatus> deleteFileRoom(@PathVariable("id") String id) {
+        try {
+            fileStorageService.deleteFileRoom(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/hotel/{id}")
+    public ResponseEntity<HttpStatus> deleteFileHotel(@PathVariable("id") String id) {
+        try {
+            fileStorageService.deleteFileHotel(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
