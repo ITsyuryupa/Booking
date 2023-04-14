@@ -27,6 +27,12 @@ public class FileController {
     public ResponseEntity<String> uploadFileHotel(@RequestParam("file") MultipartFile file, @RequestParam("hotel_id") long id) {
         String message = "";
         try {
+            if (!file.getContentType().contains("image")){
+                message = "Invalid file type";
+                System.out.println(file.getContentType());
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+            }
+
             fileStorageService.storeHotel(file, id);
             message = "Uploaded the file successfully";
             return ResponseEntity.status(HttpStatus.OK).body(message);
@@ -41,6 +47,12 @@ public class FileController {
     public ResponseEntity<String> uploadFileRoom(@RequestParam("file") MultipartFile file, @RequestParam("room_id") long id) {
         String message = "";
         try {
+            if (!file.getContentType().contains("image")){
+                message = "Invalid file type";
+                System.out.println(file.getContentType());
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+            }
+
             fileStorageService.storeRoom(file, id);
             message = "Uploaded the file successfully";
             return ResponseEntity.status(HttpStatus.OK).body(message);
