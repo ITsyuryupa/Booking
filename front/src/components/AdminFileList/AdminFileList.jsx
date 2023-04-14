@@ -13,6 +13,7 @@ const AdminFileList = () => {
     const [fileIds, setFileIds] = useState([]);
     const [files, setFiles] = useState([]);
     const [modalActive, setModalActive]=useState(false);
+    const [refresh, setRefresh] = useState(true);
     function Back() {
         navigate(-1)
     }
@@ -30,7 +31,7 @@ const AdminFileList = () => {
         };
 
         getFileIds();
-    }, [params.id]);
+    }, [params.id, refresh]);
 
     useEffect(() => {
         const getFiles = async () => {
@@ -54,14 +55,23 @@ const AdminFileList = () => {
         if (fileIds.length > 0) {
             getFiles();
         }
-    }, [fileIds]);
+    }, [fileIds, refresh]);
 
-    const handleDeletePhoto = (id) => {
+    const handleDeleteFiles = (id) => {
         axios.delete(`http://localhost:8080/api/file/${params.type}/${id}`)
             .then(response => {
                 setFileIds(prevPhotoIds => prevPhotoIds.filter(photoId => photoId !== id));
+                if (files.length === 1) {
+                    setFiles([]);
+                } else {
+                    setFiles(prevFiles => prevFiles.filter(file => file.id !== id));
+                }
             })
             .catch(error => console.log(error));
+    }
+    const handleRefresh = () => {
+        setRefresh(!refresh);
+        console.log("Меняется")
     }
 
     return (
@@ -83,8 +93,7 @@ const AdminFileList = () => {
                                 <img src={file.url} alt={`file-${file.id}`} />
                                 <div className='button-container'>
                                     <div>
-                                        {console.log(file.id)}
-                                        <MyButton  onClick={() => handleDeletePhoto(file.id)}>Удалить фотографию</MyButton>
+                                        <MyButton  onClick={() => handleDeleteFiles(file.id)}>Удалить фотографию</MyButton>
                                     </div>
                                 </div>
                             </li>
@@ -92,8 +101,8 @@ const AdminFileList = () => {
                     </ul>
                 </div>
                 <Modal active={modalActive} setActive={setModalActive}>
-                    {params.type=='hotel' && <UploadFiles nameId='hotel_id' id={params.id} type='hotel'></UploadFiles>}
-                    {params.type=='room' && <UploadFiles nameId='room_id' id={params.id} type='room'></UploadFiles>}
+                    {params.type=='hotel' && <UploadFiles refreshFiles={handleRefresh} nameId='hotel_id' id={params.id} type='hotel'></UploadFiles>}
+                    {params.type=='room' && <UploadFiles refreshFiles={handleRefresh} nameId='room_id' id={params.id} type='room'></UploadFiles>}
                 </Modal>
             </div>
         </div>

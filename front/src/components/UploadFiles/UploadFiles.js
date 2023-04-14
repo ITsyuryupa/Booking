@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import './UploadFiles.css'
 import axios from "axios";
 const UploadFiles = ({...props}) => {
-
-    console.log(props)
     const [drag, setDrag] = useState(false)
     const [files, setFiles] = useState([])
+
 
     function dragStartHandler(e){
         e.preventDefault()
@@ -28,15 +27,18 @@ const UploadFiles = ({...props}) => {
     }
 
 
-    function uploadFilesHandler() {
-        for (let file of files) {
+    async function uploadFilesHandler() {
+        const promises = files.map(file => {
             const formData = new FormData();
             formData.append("file", file);
             formData.append(props.nameId, props.id);
-            axios.post("http://localhost:8080/api/file/upload/" + props.type, formData);
-        }
+            return axios.post(`http://localhost:8080/api/file/upload/${props.type}`, formData);
+        });
+        await Promise.all(promises);
         setFiles([]);
+        props.refreshFiles();
     }
+
 
     function handleFileRemove(index) {
         setFiles((prevFiles) => {
