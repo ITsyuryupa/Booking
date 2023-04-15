@@ -25,7 +25,7 @@ const Profile = () => {
         navigate(-1)
     }
     function handleClick() {
-        userUpdate(user.currentUser.id, name, phone, email, password)
+    userUpdate(user.currentUser.id, name, phone, email, password)
         user.currentUser.fullName=name;
         user.currentUser.phone=phone;
         user.currentUser.email=email;
@@ -51,15 +51,15 @@ const Profile = () => {
                         </div>
                         <div className="profile__input">
                             Телефон:
-                            <MyInput value={phone} setValue={setPhone} type="text" placeholder="ФИО"/>
+                            <MyInput value={phone} setValue={setPhone} type="text" placeholder="Номер телефона"/>
                         </div>
                         <div className="profile__input">
                             Email:
-                            <MyInput value={email} setValue={setEmail} type="text" placeholder="ФИО"/>
+                            <MyInput value={email} setValue={setEmail} type="text" placeholder="email"/>
                         </div>
                         <div className="profile__input">
                             Пароль:
-                            <MyInput value={password} setValue={setPassword} type="password" placeholder="ФИО"/>
+                            <MyInput value={password} setValue={setPassword} type="password" placeholder="Пароль"/>
                         </div>
                         <div className="profile__btns ">
                             <MyButton onClick={handleClick}>Сохранить изменения</MyButton>
