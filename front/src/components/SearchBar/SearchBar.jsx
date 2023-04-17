@@ -15,14 +15,14 @@ const SearchBar = () => {
     tomorrow.setDate(tomorrow.getDate()+1);
     const [endDate, setEndDate] = useState();
 
-    if (startDate < (new Date)){
-        alert("Вы не можете выбрать дату, которая меньше текущей")
-    }
-
 
     function handleClick() {
         if (startDate && endDate) {
-            if (endDate <= startDate)
+            let today = new Date()
+            if (new Date(startDate).toLocaleDateString("ru") < (today).toLocaleDateString("ru")){
+                alert("Вы не можете выбрать дату, которая меньше текущей")
+            }
+            else if (endDate <= startDate)
             {
                 alert("Дата выезда не должна равняться или быть меньше даты заезда")}
             else{
@@ -54,7 +54,7 @@ const SearchBar = () => {
                         />
                         {localStorage.setItem('dateIn', (startDate))}
                         {localStorage.setItem('dateOut', (endDate))}
-                            <MyButton onClick={handleClick}>Найти</MyButton>
+                        <MyButton onClick={handleClick}>Найти</MyButton>
                     </div>
                 </div>
             </div>
