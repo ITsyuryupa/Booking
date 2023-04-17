@@ -55,36 +55,75 @@ const HotelItem = ({ ...props }) => {
         }
     }, [fileIds]);
 
+    // return (
+    //     <div>
+    //         <div className="header">
+    //             <div className="hotel-container">
+    //             <div className="Hotel">
+    //                 <strong>
+    //                     {props.result.id}. Отель: {props.result.name}
+    //                 </strong>
+    //                 <div>Город: {props.result.city}</div>
+    //                 <div>
+    //                     Улица: {props.result.street} Дом:{props.result.houseNumber}
+    //                 </div>
+    //                 <div className="post__btns">
+    //                     <MyButton onClick={handleClick}>К отелю</MyButton>
+    //                 </div>
+    //                 {files.length > 0 && (
+    //                     <Swiper
+    //                         className="swiper-container"
+    //                         slidesPerView={1}
+    //                         navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
+    //                         pagination={{ clickable: true }}
+    //                     >
+    //                         {files.map((file) => (
+    //                             <SwiperSlide className="swiper-slide" key={file.id}>
+    //                                 <img src={file.url} alt="" />
+    //                             </SwiperSlide>
+    //                         ))}
+    //                         <div className="swiper-button-prev"></div>
+    //                         <div className="swiper-button-next"></div>
+    //                     </Swiper>
+    //                 )}
+    //             </div>
+    //         </div>
+    //     </div>
+    //         </div>
+    // );
     return (
         <div>
             <div className="header">
-                <div className="Hotel">
-                    <strong>
-                        {props.result.id}. Отель: {props.result.name}
-                    </strong>
-                    <div>Город: {props.result.city}</div>
-                    <div>
-                        Улица: {props.result.street} Дом:{props.result.houseNumber}
+                <div className="hotel-container">
+
+                        {files.length > 0 && (
+                            <Swiper
+                                className="swiper-container"
+                                slidesPerView={1}
+                                navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
+                                pagination={{ clickable: true }}
+                            >
+                                {files.map((file) => (
+                                    <SwiperSlide className="swiper-slide" key={file.id}>
+                                        <img src={file.url} alt="" />
+                                    </SwiperSlide>
+                                ))}
+                                <div className="swiper-button-prev"></div>
+                                <div className="swiper-button-next"></div>
+                            </Swiper>
+                        )}
+                    <div className="Hotel">
+                        <strong>
+                            {props.result.id}. Отель: {props.result.name}
+                        </strong>
+                        <div>Город: {props.result.city}</div>
+                        <div>
+                            Улица: {props.result.street} Дом:{props.result.houseNumber}
+                        </div>
+                        <div className="post__btns">
+                            <MyButton onClick={handleClick}>К отелю</MyButton>
+                        </div>
                     </div>
-                    <div className="post__btns">
-                        <MyButton onClick={handleClick}>К отелю</MyButton>
-                    </div>
-                    {files.length > 0 && (
-                        <Swiper
-                            className="swiper-container"
-                            slidesPerView={1}
-                            navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
-                            pagination={{ clickable: true }}
-                        >
-                            {files.map((file) => (
-                                <SwiperSlide className="swiper-slide" key={file.id}>
-                                    <img src={file.url} alt="" />
-                                </SwiperSlide>
-                            ))}
-                            <div className="swiper-button-prev"></div>
-                            <div className="swiper-button-next"></div>
-                        </Swiper>
-                    )}
                 </div>
             </div>
         </div>

@@ -27,6 +27,7 @@ const SearchBar = () => {
             alert("Сначала выберте даты поездки")}
     }
     return (
+        <div style={{backgroundImage: "url('http://architizer-prod.imgix.net/media/1446726606066Astarte_Suite_private_infinity_pool_Santorini_A5.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
         <div className="header">
             <div className="headerContainer">
                 <div className="searchHeader">
@@ -52,6 +53,7 @@ const SearchBar = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

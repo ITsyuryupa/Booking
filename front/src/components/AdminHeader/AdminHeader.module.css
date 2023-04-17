@@ -1,6 +1,7 @@
 .Header{
     height: 50px;
-    border-bottom: 1px solid gray;
+    background-color:#BCCDE5;
+    border-bottom: 2px solid #ACBCD3;
     display: flex;
     justify-content: center;
 }
