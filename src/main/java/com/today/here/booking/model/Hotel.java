@@ -30,6 +30,9 @@ public class Hotel implements Serializable {
     @Column(name = "street")
     private String street;
 
+    @Column(name = "coordinates")
+    private String coordinates;
+
     @Column(name = "houseNumber")
     private Integer houseNumber;
 
@@ -49,11 +52,12 @@ public class Hotel implements Serializable {
 
     }
 
-    public Hotel(String name, String country, String city, String street, Integer houseNumber, String description, String email) {
+    public Hotel(String name, String country, String city, String street, String coordinates, Integer houseNumber, String description, String email) {
         this.name = name;
         this.country = country;
         this.city = city;
         this.street = street;
+        this.coordinates = coordinates;
         this.houseNumber = houseNumber;
         this.description = description;
         this.email = email;
@@ -77,6 +81,10 @@ public class Hotel implements Serializable {
 
     public String getStreet() {
         return street;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
     }
 
     public Integer getHouseNumber() {
@@ -105,6 +113,10 @@ public class Hotel implements Serializable {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 
     public void setHouseNumber(Integer houseNumber) {

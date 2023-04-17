@@ -118,7 +118,7 @@ public class HotelController {
         try {
             if (!hotelRepository.existsByName(hotel.getName())) {
                 Hotel _hotel = hotelRepository
-                        .save(new Hotel(hotel.getName(), hotel.getCountry(), hotel.getCity(), hotel.getStreet(), hotel.getHouseNumber(), hotel.getDescription(), hotel.getEmail()));
+                        .save(new Hotel(hotel.getName(), hotel.getCountry(), hotel.getCity(), hotel.getStreet(), hotel.getCoordinates(), hotel.getHouseNumber(), hotel.getDescription(), hotel.getEmail()));
                 return new ResponseEntity<>(_hotel, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -149,6 +149,7 @@ public class HotelController {
             _hotel.setDescription(hotel.getDescription());
             _hotel.setHouseNumber(hotel.getHouseNumber());
             _hotel.setStreet(hotel.getStreet());
+            _hotel.setCoordinates(hotel.getCoordinates());
             _hotel.setEmail(hotel.getEmail());
             _hotel.setName(hotel.getName());
             return new ResponseEntity<>(hotelRepository.save(_hotel), HttpStatus.OK);
