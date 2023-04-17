@@ -9,11 +9,16 @@ import {useNavigate} from "react-router-dom";
 registerLocale('ru', ru)
 const SearchBar = () => {
     const navigate = useNavigate();
-    const [name, setName] = useState('Kazan');
+    const [name, setName] = useState('');
     const [startDate, setStartDate] = useState();
     let tomorrow=new Date();
     tomorrow.setDate(tomorrow.getDate()+1);
     const [endDate, setEndDate] = useState();
+
+    if (startDate < (new Date)){
+        alert("Вы не можете выбрать дату, которая меньше текущей")
+    }
+
 
     function handleClick() {
         if (startDate && endDate) {

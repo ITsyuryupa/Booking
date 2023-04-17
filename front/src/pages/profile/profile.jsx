@@ -51,15 +51,15 @@ const Profile = () => {
                         </div>
                         <div className="profile__input">
                             Телефон:
-                            <MyInput value={phone} setValue={setPhone} type="text" placeholder="ФИО"/>
+                            <MyInput value={phone} setValue={setPhone} type="text" placeholder="Телефон"/>
                         </div>
                         <div className="profile__input">
                             Email:
-                            <MyInput value={email} setValue={setEmail} type="text" placeholder="ФИО"/>
+                            <MyInput value={email} setValue={setEmail} type="text" placeholder="Email"/>
                         </div>
                         <div className="profile__input">
                             Пароль:
-                            <MyInput value={password} setValue={setPassword} type="password" placeholder="ФИО"/>
+                            <MyInput value={password} setValue={setPassword} type="password" placeholder="Пароль"/>
                         </div>
                         <div className="profile__btns ">
                             <MyButton onClick={handleClick}>Сохранить изменения</MyButton>
