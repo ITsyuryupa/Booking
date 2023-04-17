@@ -25,7 +25,7 @@ const Profile = () => {
         navigate(-1)
     }
     function handleClick() {
-        userUpdate(user.currentUser.id, name, phone, email, password)
+    userUpdate(user.currentUser.id, name, phone, email, password)
         user.currentUser.fullName=name;
         user.currentUser.phone=phone;
         user.currentUser.email=email;
@@ -51,11 +51,11 @@ const Profile = () => {
                         </div>
                         <div className="profile__input">
                             Телефон:
-                            <MyInput value={phone} setValue={setPhone} type="text" placeholder="Телефон"/>
+                            <MyInput value={phone} setValue={setPhone} type="text" placeholder="Номер телефона"/>
                         </div>
                         <div className="profile__input">
                             Email:
-                            <MyInput value={email} setValue={setEmail} type="text" placeholder="Email"/>
+                            <MyInput value={email} setValue={setEmail} type="text" placeholder="email"/>
                         </div>
                         <div className="profile__input">
                             Пароль:
