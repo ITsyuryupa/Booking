@@ -89,7 +89,8 @@ const HotelItem = ({ ...props }) => {
                         </div>
                     </div>
                     <div>
-                        <YMap></YMap>
+                        {console.log(props.result)}
+                        <YMap coordinates={props.result.coordinates} description={props.result.description}></YMap>
                     </div>
                 </div>
             </div>

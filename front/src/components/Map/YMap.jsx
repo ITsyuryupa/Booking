@@ -2,14 +2,15 @@ import React from 'react';
 import {YMaps, Map, FullscreenControl, SearchControl, Placemark} from '@pbe/react-yandex-maps';
 import "./YMap.css"
 const YMap = ({...props}) => {
-    const placemarkCoordinates = [55.792235362895,49.16762359325406];
+    const placeCoordinatesStr = props.coordinates;
+    const placemarkCoordinates = placeCoordinatesStr.split(",");
     const placemarkProperties = {
-        balloonContentBody: 'Отель ИГОРЯНА'
+        balloonContentBody: props.description
     };
     const mapStyle = {
         margin: "auto",
-        height: 400,
-        width: 400,
+        height: 350,
+        width: 300,
         "@media (max-width: 900px)": {
             height: 300,
             width: "100vw"
@@ -24,8 +25,8 @@ const YMap = ({...props}) => {
                 <Map
                     style={mapStyle}
                     defaultState={{
-                        center: [55.792235362895,49.16762359325406],
-                        zoom: 9,
+                        center: placeCoordinatesStr.split(","),
+                        zoom: 15,
                         controls: [],
                     }}
                 >
