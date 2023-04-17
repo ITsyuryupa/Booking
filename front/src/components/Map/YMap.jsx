@@ -4,17 +4,10 @@ import "./YMap.css"
 const YMap = ({...props}) => {
     const placeCoordinatesStr = props.coordinates;
     const placemarkCoordinates = placeCoordinatesStr.split(",");
-    const placemarkProperties = {
-        balloonContentBody: props.description
-    };
     const mapStyle = {
         margin: "auto",
         height: 350,
-        width: 300,
-        "@media (max-width: 900px)": {
-            height: 300,
-            width: "100vw"
-        }
+        width: 350,
     };
     return (
         <div className="header">
@@ -30,7 +23,7 @@ const YMap = ({...props}) => {
                         controls: [],
                     }}
                 >
-                    <Placemark geometry={placemarkCoordinates} properties={placemarkProperties} />
+                    <Placemark geometry={placemarkCoordinates} />
                     <FullscreenControl />
                     <SearchControl options={{ float: "right" }} />
                 </Map>
