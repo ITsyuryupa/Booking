@@ -16,7 +16,8 @@ export const registration = async (fullName, phone, email, password) => {
         alert("Вы успешно зарегестрировались")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Регисртрация не удалась")
+        console.log(e)
         return false;
     }
 }
@@ -93,7 +94,7 @@ export const AddHotels = async (name, country, city, street, houseNumber, descri
     }
 }
 
-export const UpdateHotel = async (id, name, country, city, street, houseNumber, description, email) => {
+export const UpdateHotel = async (id, name, country, city, street, houseNumber, description, email, coordinates) => {
     try {
         const response = await axios.put(`http://localhost:8080/api/hotel/` + id, {
             id,
