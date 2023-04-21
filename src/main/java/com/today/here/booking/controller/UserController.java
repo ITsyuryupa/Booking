@@ -25,6 +25,10 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             if (!userRepository.existsByPhone(user.getPhone())) {
+                if (user.getPassword().equals(null) || user.getPhone().equals(null) || user.getFullName().equals(null) ||
+                user.getEmail().equals(null)) {
+                    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+                }
                 User _user = userRepository
                         .save(new User(user.getFullName(), user.getPhone(), user.getEmail(), user.getPassword()));
                 return new ResponseEntity<>(_user, HttpStatus.CREATED);
@@ -59,6 +63,10 @@ public class UserController {
         Optional<User> userData = userRepository.findById(id);
 
         if (userData.isPresent()) {
+            if (user.getPassword().equals(null) || user.getPhone().equals(null) || user.getFullName().equals(null) ||
+                    user.getEmail().equals(null)) {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
             User _user = userData.get();
             _user.setEmail(user.getEmail());
             _user.setFullName(user.getFullName());
