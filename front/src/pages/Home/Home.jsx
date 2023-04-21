@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import './Home.module.css';
+import React from 'react';
+import './Home.css';
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
@@ -10,7 +10,9 @@ const Home = () => {
     return (
         <div>
             <Header></Header>
-            <SearchBar></SearchBar>
+                <div className="background-image">
+                    <SearchBar></SearchBar>
+                </div>
         </div>
     );
 };

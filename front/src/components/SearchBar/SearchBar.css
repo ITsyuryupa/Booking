@@ -2,15 +2,6 @@
     display: flex;
     justify-content: center;
     position: relative;
-    /*background-image: url(http://architizer-prod.imgix.net/media/1446726606066Astarte_Suite_private_infinity_pool_Santorini_A5.jpg);*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center center;*/
-    /*background-attachment: fixed;*/
-    /*-webkit-background-size: cover;*/
-    /*-moz-background-size: cover;*/
-    /*-o-background-size: cover;*/
-    /*background-size: cover;*/
-
 }
 .headerContainer {
     width: 100%;
