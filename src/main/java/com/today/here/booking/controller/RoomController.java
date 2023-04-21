@@ -2,6 +2,7 @@ package com.today.here.booking.controller;
 
 import com.today.here.booking.model.User;
 import com.today.here.booking.model.dto.FindHotel;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,7 @@ public class RoomController {
     public ResponseEntity<Room> createRoom(@RequestBody Room room) {
         try {
             if (!roomRepository.existsByName(room.getName())) {
-                if (room.getName().equals(null) || room.getHotel().equals(null) || room.getCount().equals(null) ||
+                if (room.getName().equals("") || room.getHotel().equals(null) || room.getCount().equals(null) ||
                 room.getCostNight().equals(null) || room.getCountBeds().equals(null)) {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
@@ -82,7 +83,7 @@ public class RoomController {
         Optional<Room> roomData = roomRepository.findById(id);
 
         if (roomData.isPresent()) {
-            if (room.getName().equals(null) || room.getHotel().equals(null) || room.getCount().equals(null) ||
+            if (room.getName().equals("") || room.getHotel().equals(null) || room.getCount().equals(null) ||
                     room.getCostNight().equals(null) || room.getCountBeds().equals(null)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
