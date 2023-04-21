@@ -117,6 +117,10 @@ public class HotelController {
     public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
         try {
             if (!hotelRepository.existsByName(hotel.getName())) {
+                if (hotel.getCity().equals(null) || hotel.getName().equals(null) || hotel.getEmail().equals(null) || hotel.getCoordinates().equals(null)
+                || hotel.getDescription().equals(null) || hotel.getStreet().equals(null) || hotel.getHouseNumber().equals(null) || hotel.getCountry().equals(null)) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
                 Hotel _hotel = hotelRepository
                         .save(new Hotel(hotel.getName(), hotel.getCountry(), hotel.getCity(), hotel.getStreet(), hotel.getCoordinates(), hotel.getHouseNumber(), hotel.getDescription(), hotel.getEmail()));
                 return new ResponseEntity<>(_hotel, HttpStatus.CREATED);
@@ -144,6 +148,10 @@ public class HotelController {
         Optional<Hotel> hotelData = hotelRepository.findById(id);
 
         if (hotelData.isPresent()) {
+            if (hotel.getCity().equals(null) || hotel.getName().equals(null) || hotel.getEmail().equals(null) || hotel.getCoordinates().equals(null)
+                    || hotel.getDescription().equals(null) || hotel.getStreet().equals(null) || hotel.getHouseNumber().equals(null) || hotel.getCountry().equals(null)) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             Hotel _hotel = hotelData.get();
             _hotel.setCountry(hotel.getCountry());
             _hotel.setDescription(hotel.getDescription());
