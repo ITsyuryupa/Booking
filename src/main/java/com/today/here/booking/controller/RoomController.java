@@ -51,6 +51,10 @@ public class RoomController {
     public ResponseEntity<Room> createRoom(@RequestBody Room room) {
         try {
             if (!roomRepository.existsByName(room.getName())) {
+                if (room.getName().equals(null) || room.getHotel().equals(null) || room.getCount().equals(null) ||
+                room.getCostNight().equals(null) || room.getCountBeds().equals(null)) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
                 Room _room = roomRepository
                         .save(new Room(room.getName(), room.getCountBeds(), room.getCostNight(), room.getHotel(), room.getCount()));
                 return new ResponseEntity<>(_room, HttpStatus.CREATED);
@@ -78,6 +82,10 @@ public class RoomController {
         Optional<Room> roomData = roomRepository.findById(id);
 
         if (roomData.isPresent()) {
+            if (room.getName().equals(null) || room.getHotel().equals(null) || room.getCount().equals(null) ||
+                    room.getCostNight().equals(null) || room.getCountBeds().equals(null)) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             Room _room = roomData.get();
             _room.setCostNight(room.getCostNight());
             _room.setCountBeds(room.getCountBeds());
