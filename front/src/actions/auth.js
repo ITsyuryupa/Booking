@@ -14,10 +14,18 @@ export const registration = async (fullName, phone, email, password) => {
             password
         })
         alert("Вы успешно зарегестрировались")
+
         return true;
     } catch (e) {
-        alert("Регисртрация не удалась")
-        console.log(e)
+        if (e.response.request.status == 409){
+            alert("Такой телефон уже использован")
+        }
+        else if (e.response.request.status == 500){
+                alert("Сервер недоступен")
+        }
+        else{
+            alert("Регисртрация не удалась")
+        }
         return false;
     }
 }
@@ -34,7 +42,18 @@ export const login =  (phone, password) => {
             return true
             localStorage.setItem('user', response.data)
         } catch (e) {
-            alert(e.response.data.message)
+            if (e.response.request.status == 401){
+                alert("Пароль неверен")
+            }
+            else if (e.response.request.status == 204){
+                alert("Неверный логин")
+            }
+            else if (e.response.request.status == 500){
+                alert("Сервер недоступен")
+            }
+            else{
+                alert("Произошла ошибка, попробуйте позже")
+            }
             return false
         }
     }
@@ -51,7 +70,19 @@ export const adminLogin =  (login, password) => {
             dispatch(setAdmin(response.data))
             localStorage.setItem('admin', response.data)
         } catch (e) {
-            alert("Неверный логин или пароль")
+            if (e.response.request.status == 401){
+                alert("Пароль неверен")
+            }
+            else if (e.response.request.status == 204){
+                alert("Неверный логин")
+            }
+            else if (e.response.request.status == 500){
+                alert("Сервер недоступен")
+            }
+            else{
+                alert("Произошла ошибка, попробуйте позже")
+            }
+            return false
         }
     }
 }
@@ -71,11 +102,11 @@ export const reservation = async (dateIn, dateOut, room, user, dateUser, passpor
         alert("Вы успешно забранировали номер")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false;
     }
 }
-export const AddHotels = async (name, country, city, street, houseNumber, description, email) => {
+export const AddHotels = async (name, country, city, street, houseNumber, description, email, coordinates) => {
     try {
         const response = await axios.post(`http://localhost:8080/api/hotel/create`, {
             name,
@@ -84,12 +115,13 @@ export const AddHotels = async (name, country, city, street, houseNumber, descri
             street,
             houseNumber,
             description,
-            email
+            email,
+            coordinates
         })
         alert("Вы успешно добавили отель")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false;
     }
 }
@@ -104,12 +136,13 @@ export const UpdateHotel = async (id, name, country, city, street, houseNumber, 
             street,
             houseNumber,
             description,
-            email
+            email,
+            coordinates
         })
         alert("Вы успешно обновили данные о отеле")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false;
     }
 }
@@ -119,7 +152,7 @@ export const DeleteHotel = async (id) => {
         alert("Вы успешно удалили отель")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false;
     }
 }
@@ -129,7 +162,7 @@ export const DeleteRoom = async (id) => {
         alert("Вы успешно удалили комнату")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false;
     }
 }
@@ -140,7 +173,7 @@ export const DeleteReservation = async (id) => {
         alert("Вы успешно удалили бронь")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false;
     }
 }
@@ -153,7 +186,7 @@ export const ChangeRoom = async (id, name, countBeds, costNight, count, hotel) =
         alert("Вы успешно изменили комнату")
         return true;
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false;
     }
 }
@@ -169,7 +202,7 @@ export const userUpdate = async (id, fullName, phone, email, password) => {
         alert("Вы успешно обновили данные")
         return true
     } catch (e) {
-        alert(e.response.data.message)
+
         return false
     }
 }
@@ -181,8 +214,8 @@ export const userDelete = async (id) => {
         return true
 
     } catch (e) {
+        alert("Произошла ошибка, попробуйте позже")
         return false
-        alert(e.response.data.message)
     }
 }
 export const createRoom = async (name, countBeds, costNight, count, hotel) => {
@@ -193,7 +226,7 @@ export const createRoom = async (name, countBeds, costNight, count, hotel) => {
         alert("Вы успешно обновили данные")
         return true
     } catch (e) {
-        alert(e.response.data.message)
+        alert("Произошла ошибка, попробуйте позже")
         return false
     }
 }
