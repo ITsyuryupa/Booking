@@ -29,3 +29,5 @@
 /target/classes/
 
 /src/main/resources/application.properties
+/hs_err_pid10848.log
+/Booking.iml
