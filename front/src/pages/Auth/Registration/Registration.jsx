@@ -18,6 +18,9 @@ const Registration = () => {
 
     if (isAuth){
         navigate("/");}
+    function handleClick() {
+        navigate("/login");
+    }
 
     const ApplyHandleClick = async () => {
         setIsDisabled(true);
@@ -50,6 +53,9 @@ const Registration = () => {
                 </div>
                 <div className="button-container">
                     <MyButton onClick={ApplyHandleClick} disabled={isDisabled}>Принять</MyButton>
+                </div>
+                <div className="button-container">
+                    <MyButton onClick={handleClick}>уже зарегистрированы</MyButton>
                 </div>
             </div>
 

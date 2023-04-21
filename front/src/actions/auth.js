@@ -45,7 +45,7 @@ export const login =  (phone, password) => {
             if (e.response.request.status == 401){
                 alert("Пароль неверен")
             }
-            else if (e.response.request.status == 204){
+            else if (e.response.request.status == 404){
                 alert("Неверный логин")
             }
             else if (e.response.request.status == 500){
@@ -73,7 +73,7 @@ export const adminLogin =  (login, password) => {
             if (e.response.request.status == 401){
                 alert("Пароль неверен")
             }
-            else if (e.response.request.status == 204){
+            else if (e.response.request.status == 404){
                 alert("Неверный логин")
             }
             else if (e.response.request.status == 500){
