@@ -42,7 +42,7 @@ public class UserController {
         try {
             List<User> users = userRepository.findByPhone(auth.getPhone());
             if (users.isEmpty()) {
-                return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
             } else if (users.get(0).getPassword().equals(auth.getPassword())) {
                 return new ResponseEntity<>(users.get(0) , HttpStatus.OK);
             } else {
