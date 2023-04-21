@@ -6,11 +6,24 @@ import Reserv from "../../components/Reservations/Reserv";
 import {closeModal} from "../../components/utils/closeModal";
 import axios from "axios";
 import {Swiper, SwiperSlide} from "swiper/react";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 const RoomItem = ({...props}) => {
+    const navigate = useNavigate();
     const [modalActive, setModalActive]=useState(false);
     const [fileIds, setFileIds] = useState([]);
     const [files, setFiles] = useState([]);
-    {console.log(props.room.id)}
+    const isAuth = useSelector(state => state.user.isAuth)
+
+    function ReservCheckAuth(){
+        if (!isAuth) {
+            navigate("/login")
+            alert("Необходимо войти в аккаунт")
+        }
+        else {
+            setModalActive((true))
+        }
+    }
 
     useEffect(() => {
         const getFileIds = async () => {
@@ -60,7 +73,7 @@ const RoomItem = ({...props}) => {
                         <div>Кол-во спальных мест: {props.room.countBeds}</div>
                         <div>Цена за ночь: {props.room.costNight}</div>
                         <div className='room__btns'>
-                            <MyButton onClick={()=> setModalActive((true))}>Зарезервировать</MyButton>
+                            <MyButton onClick={()=> ReservCheckAuth()}>Зарезервировать</MyButton>
                         </div>
                         {files.length > 0 && (
                             <Swiper

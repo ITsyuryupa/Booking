@@ -14,10 +14,11 @@ const AdminChangeHotel = ({...props}) => {
     const [street, setStreet] = useState(props.hotel.street);
     const [houseNumber, setHouseNumber] = useState(props.hotel.houseNumber);
     const [description, setDescription] = useState(props.hotel.description);
+    const [coordinates, setCoordinates] = useState(props.hotel.coordinates);
     console.log(props.modalActive)
 
     const handleChangeHotel = async () => {
-        const success = await UpdateHotel(props.hotel.id, name, country, city, street, houseNumber, description, email);
+        const success = await UpdateHotel(props.hotel.id, name, country, city, street, houseNumber, description, email, coordinates);
         if (success) {
             props.closeModal();
         }
@@ -46,6 +47,9 @@ const AdminChangeHotel = ({...props}) => {
                 </div>
                 <div>
                     <MyInput value={description} setValue={setDescription} type="text" placeholder="Описание"/>
+                </div>
+                <div>
+                    <MyInput value={coordinates} setValue={setCoordinates} type="text" placeholder="Координаты"/>
                 </div>
                 <div>
                     <MyButton onClick={handleChangeHotel}>Изменить</MyButton>
