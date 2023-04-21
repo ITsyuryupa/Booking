@@ -117,8 +117,8 @@ public class HotelController {
     public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
         try {
             if (!hotelRepository.existsByName(hotel.getName())) {
-                if (hotel.getCity().equals(null) || hotel.getName().equals(null) || hotel.getEmail().equals(null) || hotel.getCoordinates().equals(null)
-                || hotel.getDescription().equals(null) || hotel.getStreet().equals(null) || hotel.getHouseNumber().equals(null) || hotel.getCountry().equals(null)) {
+                if (hotel.getCity().equals("") || hotel.getName().equals("") || hotel.getEmail().equals("") || hotel.getCoordinates().equals("")
+                        || hotel.getDescription().equals("") || hotel.getStreet().equals("") || hotel.getHouseNumber().equals(null) || hotel.getCountry().equals("")) {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
                 Hotel _hotel = hotelRepository
@@ -148,8 +148,8 @@ public class HotelController {
         Optional<Hotel> hotelData = hotelRepository.findById(id);
 
         if (hotelData.isPresent()) {
-            if (hotel.getCity().equals(null) || hotel.getName().equals(null) || hotel.getEmail().equals(null) || hotel.getCoordinates().equals(null)
-                    || hotel.getDescription().equals(null) || hotel.getStreet().equals(null) || hotel.getHouseNumber().equals(null) || hotel.getCountry().equals(null)) {
+            if (hotel.getCity().equals("") || hotel.getName().equals("") || hotel.getEmail().equals("") || hotel.getCoordinates().equals("")
+                    || hotel.getDescription().equals("") || hotel.getStreet().equals("") || hotel.getHouseNumber().equals(null) || hotel.getCountry().equals("")) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             Hotel _hotel = hotelData.get();
