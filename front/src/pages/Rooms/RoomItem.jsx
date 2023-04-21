@@ -68,7 +68,6 @@ const RoomItem = ({...props}) => {
             <main>
                 <div className='header'>
                     <div className='room'>
-                        <div>Номер комнаты: {props.room.id}</div>
                         <div>Название комнаты: {props.room.name}</div>
                         <div>Кол-во спальных мест: {props.room.countBeds}</div>
                         <div>Цена за ночь: {props.room.costNight}</div>

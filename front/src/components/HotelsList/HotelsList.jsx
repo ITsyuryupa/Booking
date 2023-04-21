@@ -13,13 +13,6 @@ const HotelsList = (...props) => {
     let dateOut= format(new Date((localStorage.getItem('dateOut'))),"yyyy-MM-dd")
     let city = params.id
     const [dHotels, setDHotels] = useState([])
-
-    // useEffect(() => {
-    //     axios.get('http://localhost:8080/api/hotel/all')
-    //         .then(data => {
-    //             setResults(data.data);
-    //         })
-    // }, [])
     const daka = {
         "dateIn": dateIn,
         "dateOut": dateOut,
@@ -34,20 +27,10 @@ const HotelsList = (...props) => {
             })
 
     }, [])
-
     return (
         <div>
             <Header></Header>
-            {/*{params.id == null && results.map(result => {*/}
-            {/*    return(*/}
-            {/*        <div>*/}
-            {/*            <div>*/}
-            {/*                <HotelItem result={result} key={result.id}></HotelItem>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    );*/}
-            {/*})}*/}
-            {params.id != null && dHotels.map(result => {
+            {params.id != null && dHotels.sort((a, b) => a.id - b.id).map(result => {
                 return(
                     <div>
                         <div>

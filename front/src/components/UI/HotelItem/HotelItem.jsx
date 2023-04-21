@@ -90,7 +90,11 @@ const HotelItem = ({ ...props }) => {
                     </div>
                     <div>
                         {console.log(props.result)}
-                        <YMap coordinates={props.result.coordinates} description={props.result.description}></YMap>
+                        {props.result.coordinates ? (
+                            <YMap coordinates={props.result.coordinates} description={props.result.description}></YMap>
+                        ) : (
+                            <div>Карта недоступна</div>
+                        )}
                     </div>
                 </div>
             </div>
