@@ -13,9 +13,10 @@ const AdminAddHotels = ({ onClose }) => {
     const [street, setStreet] = useState("");
     const [houseNumber, setHouseNumber] = useState("");
     const [description, setDescription] = useState("");
+    const [coordinates, setCoordinates] = useState("");
 
     const handleAddHotel = async () => {
-        const success = await AddHotels(name, country, city, street, houseNumber, description, email);
+        const success = await AddHotels(name, country, city, street, houseNumber, description, email, coordinates);
         if (success) {
             navigate('/admin/hotels');
         }
@@ -45,6 +46,9 @@ const AdminAddHotels = ({ onClose }) => {
                 </div>
                 <div>
                     <MyInput value={description} setValue={setDescription} type="text" placeholder="Описание"/>
+                </div>
+                <div>
+                    <MyInput value={coordinates} setValue={setCoordinates} type="text" placeholder="Координаты"/>
                 </div>
                 <div>
                     <MyButton onClick={handleAddHotel}>Добавить</MyButton>

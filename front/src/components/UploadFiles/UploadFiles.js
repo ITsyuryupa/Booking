@@ -28,6 +28,7 @@ const UploadFiles = ({...props}) => {
 
 
     async function uploadFilesHandler() {
+        try{
         const promises = files.map(file => {
             const formData = new FormData();
             formData.append("file", file);
@@ -36,7 +37,11 @@ const UploadFiles = ({...props}) => {
         });
         await Promise.all(promises);
         setFiles([]);
-        props.refreshFiles();
+        props.refreshFiles();}
+        catch (e){
+            console.log(e)
+            alert("Ошибка, попробуйте позже или измените файлы")
+        }
     }
 
 
