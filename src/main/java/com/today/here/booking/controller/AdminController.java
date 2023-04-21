@@ -24,7 +24,7 @@ public class AdminController {
         try {
             Admin admin = adminRepository.findByLogin(auth.getLogin());
             if (admin.equals(null)) {
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             } else if (admin.getPassword().equals(auth.getPassword())) {
                 return new ResponseEntity<>(admin , HttpStatus.OK);
             } else {
