@@ -52,10 +52,10 @@ const Registration = () => {
                     <MyInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль" />
                 </div>
                 <div className="button-container">
-                    <MyButton onClick={ApplyHandleClick} disabled={isDisabled}>Принять</MyButton>
+                    <MyButton onClick={ApplyHandleClick} disabled={isDisabled}>Зарегистрироваться</MyButton>
                 </div>
                 <div className="button-container">
-                    <MyButton onClick={handleClick}>уже зарегистрированы</MyButton>
+                    <MyButton onClick={handleClick}>Уже зарегистрированы</MyButton>
                 </div>
             </div>
 
