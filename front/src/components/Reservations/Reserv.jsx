@@ -62,7 +62,6 @@ const Reserv = ({...props}) => {
                                 dateFormat='dd/MM/yyyy'
                                 locale="ru"
                                 className="searchInput"
-
                                 placeholderText="Дата рождения"
                     />
                 </div>

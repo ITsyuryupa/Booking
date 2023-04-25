@@ -7,3 +7,7 @@
     color: #000;
     padding: 10px 20px;
 }
+.aBtn:hover {
+    background-color: gray;
+
+}

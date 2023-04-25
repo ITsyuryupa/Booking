@@ -78,7 +78,7 @@ const HotelItem = ({ ...props }) => {
                         )}
                     <div className="Hotel">
                         <strong>
-                            Отель: {props.result.name}
+                            {props.result.name}
                         </strong>
                         <div>Город: {props.result.city}</div>
                         <div>
@@ -89,7 +89,6 @@ const HotelItem = ({ ...props }) => {
                         </div>
                     </div>
                     <div>
-                        {console.log(props.result)}
                         {props.result.coordinates ? (
                             <YMap coordinates={props.result.coordinates} description={props.result.description}></YMap>
                         ) : (
