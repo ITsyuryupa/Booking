@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import {format} from "date-fns";
 import {setUser} from "../../reducers/userReducer";
 import Header from "../Header/Header";
+import "./HotelList.css"
 
 
 const HotelsList = (...props) => {
@@ -30,9 +31,10 @@ const HotelsList = (...props) => {
     return (
         <div>
             <Header></Header>
+
             {params.id != null && dHotels.sort((a, b) => a.id - b.id).map(result => {
                 return(
-                    <div>
+                    <div className="HotelsBack">
                         <div>
                             {   console.log(dHotels)}
                             <HotelItem result={result} key={result.id}></HotelItem>
