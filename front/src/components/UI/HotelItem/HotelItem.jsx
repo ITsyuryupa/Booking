@@ -87,7 +87,7 @@ const HotelItem = ({ result }) => {
     const renderMap = () => {
 
         // проверяем, есть ли координаты
-        if (!result.country) {
+        if (!result.coordinates) {
             return <div>Карта недоступна</div>;
         }
 
@@ -96,7 +96,7 @@ const HotelItem = ({ result }) => {
             <>
 
                 {!mapLoaded && <div>Загрузка карты...</div>}
-                {result.country && <YMap coordinates={result.country} description={result.description} onLoad={handleMapLoad} />}
+                {result.coordinates && <YMap coordinates={result.coordinates} description={result.description} onLoad={handleMapLoad} />}
             </>
         );
     };
