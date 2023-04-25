@@ -45,19 +45,19 @@ const Profile = () => {
                 <div className='header'>
                     <div className='content'>
                         <strong>Настройки пользователя</strong>
-                        <div className="profile__input">
-                            ФИО
+                        <div>
+                            ФИО:
                         <MyInput value={name} setValue={setName} type="text" placeholder="ФИО"/>
                         </div>
-                        <div className="profile__input">
+                        <div>
                             Телефон:
                             <MyInput value={phone} setValue={setPhone} type="text" placeholder="Номер телефона"/>
                         </div>
-                        <div className="profile__input">
+                        <div>
                             Email:
                             <MyInput value={email} setValue={setEmail} type="text" placeholder="email"/>
                         </div>
-                        <div className="profile__input">
+                        <div>
                             Пароль:
                             <MyInput value={password} setValue={setPassword} type="password" placeholder="Пароль"/>
                         </div>
@@ -67,7 +67,7 @@ const Profile = () => {
                         <div className="profile__btns ">
                             <MyButton onClick={backHandleClick}>Назад</MyButton>
                         </div>
-                        <div className="profile__btns_del">
+                        <div className="profile__btns ">
                             <MyButton  onClick={()=> setModalActive((true))}>Удалить аккаунт</MyButton>
                         </div>
                     </div>

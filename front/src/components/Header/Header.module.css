@@ -5,6 +5,9 @@
     display: flex;
     justify-content: center;
 }
+.Header strong{
+    white-space: nowrap;
+}
 .Logo{
     width: 100%;
     max-width: 1024px;
