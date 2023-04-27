@@ -34,7 +34,7 @@ const HotelsList = (...props) => {
 
             {params.id != null && dHotels.sort((a, b) => a.id - b.id).map(result => {
                 return(
-                    <div className="HotelsBack">
+                    <div>
                         <div>
                             {   console.log(dHotels)}
                             <HotelItem result={result} key={result.id}></HotelItem>
@@ -42,6 +42,7 @@ const HotelsList = (...props) => {
                     </div>
                 );
             })}
+            {dHotels.length == 0 && <div>Ничего не найдено</div>}
         </div>
     );
 };
