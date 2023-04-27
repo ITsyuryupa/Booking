@@ -1,4 +1,4 @@
-INSERT INTO hotel (city,coordinates,country, description, email, house_number, name, street)
+INSERT INTO hotel (city,country, coordinates, description, email, house_number, name, street)
 VALUES
     ('Казань', 'Россия','55.782706,49.137797', 'Пятизвездочный отель в историческом центре Казани. Это объект культурного наследия регионального значения и одно из самых красивых архитектурных сооружений города.', 'ilyina.nastasya2002@gmail.com', '3', 'Kazan Palace by Tasigo', 'Калинина'),
     ('Москва', 'Россия','55.699671,37.625940', 'Отель удобно расположен недалеко от центра в районе новой Деловой Москвы. Пятнадцать минут поездки - и перед вами Красная площадь.', 'ilyina.nastasya2002@gmail.com', '6', 'Palmira Business Club', 'Новоданиловская набережная'),
