@@ -36,7 +36,6 @@ const HotelsList = (...props) => {
                 return(
                     <div>
                         <div>
-                            {   console.log(dHotels)}
                             <HotelItem result={result} key={result.id}></HotelItem>
                         </div>
                     </div>
