@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import './Rooms.css'
 import MyButton from "../../components/UI/button/MyButton";
 import Modal from "../../components/UI/Modal/Modal";
 import Reserv from "../../components/Reservations/Reserv";
@@ -8,6 +7,7 @@ import axios from "axios";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import './Rooms.css'
 const RoomItem = ({...props}) => {
     const navigate = useNavigate();
     const [modalActive, setModalActive]=useState(false);
@@ -67,7 +67,7 @@ const RoomItem = ({...props}) => {
         <div>
             <main>
                 <div className='header'>
-                    <div className='room'>
+                    <div className='roomItem'>
                         <div>Название комнаты: {props.room.name}</div>
                         <div>Кол-во спальных мест: {props.room.countBeds}</div>
                         <div>Цена за ночь: {props.room.costNight}</div>

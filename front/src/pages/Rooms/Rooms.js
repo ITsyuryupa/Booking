@@ -46,23 +46,24 @@ const Rooms = () => {
     return (
         <div>
             <Header></Header>
-            <div>
-                <strong className='header'>{Hotel.name}</strong>
-                <title className='header'>{Hotel.description}</title>
-                {
-                    rooms.map(room =>{
-                        return(
-                            <RoomItem room={room} key={room.id}></RoomItem>
-                        );
-                    })
-                }
-                <div className='header'>
-                    <div className='room__btns'>
-                        <MyButton className='header' onClick={handleClick}>Назад</MyButton>
+            <div className="RoomsBack">
+                    <strong className='header'>{Hotel.name}</strong>
+                    <title className='header'>{Hotel.description}</title>
+                    {
+                        rooms.map(room =>{
+                            return(
+                                <RoomItem room={room} key={room.id}></RoomItem>
+                            );
+                        })
+                    }
+                    <div className='header'>
+                        <div className='room__btns'>
+                            <MyButton className='header' onClick={handleClick}>Назад</MyButton>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
+
     );
 };
 

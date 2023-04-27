@@ -4,7 +4,7 @@
     position: relative;
 }
 
-.room {
+.roomItem {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,7 @@
     border: 2px solid gray;
     width: 100%;
     max-width: 1024px;
+    background: white;
 }
 
 .room__btns {
@@ -19,3 +20,7 @@
     margin-bottom: 10px;
     display: flex;
 }
+body {
+    background: linear-gradient(110.34deg, #BCCDE5 2.76%, #588DCA 128.27%);
+}
+
