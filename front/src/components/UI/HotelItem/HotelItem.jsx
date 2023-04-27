@@ -16,11 +16,12 @@ const HotelItem = ({ result }) => {
     const [fileIds, setFileIds] = useState([]);
     const [files, setFiles] = useState([]);
     const [fileLoaded, setFileLoaded] = useState(false);
-    const [mapLoaded, setMapLoaded] = useState(true);
+    const [mapLoaded, setMapLoaded] = useState(false);
 
     const handleMapLoad = () => {
         setMapLoaded(true); // устанавливаем состояние, когда карта загрузилась
     }
+
 
     const handleClick = () => {
         navigate(`/rooms/${result.id}`);
@@ -94,12 +95,12 @@ const HotelItem = ({ result }) => {
         // возвращаем карту и устанавливаем onLoad событие, чтобы установить состояние, когда карта загрузится
         return (
             <>
-
-                {!mapLoaded && <div>Загрузка карты...</div>}
+                {mapLoaded && <div>Загрузка карты...</div>}
                 {result.coordinates && <YMap coordinates={result.coordinates} description={result.description} onLoad={handleMapLoad} />}
             </>
         );
     };
+
 
 
     console.log(result)

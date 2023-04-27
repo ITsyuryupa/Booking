@@ -9,6 +9,7 @@ const YMap = ({...props}) => {
         height: 350,
         width: 350,
     };
+    console.log(props.coordinates)
     return (
         <div className="header">
             <YMaps
