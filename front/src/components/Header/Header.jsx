@@ -10,6 +10,7 @@ const Header = () => {
     const navigate = useNavigate();
     const isAuth = useSelector(state => state.user.isAuth)
     const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
 
     function handleClick() {
@@ -44,6 +45,7 @@ const Header = () => {
                             </div>
                         </div>}
                     {!isAuth && <div className={styles.Buttons}><MyButton onClick={ReghandleClick}>Зарегестрироваться</MyButton></div>}
+                {isAuth && <div className={styles.Buttons}><MyButton onClick={() => dispatch(logout()) }>Выход</MyButton></div>}
             </div>
         </div>
     );
