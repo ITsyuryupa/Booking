@@ -62,34 +62,38 @@ const RoomItem = ({...props}) => {
         }
     }, [fileIds]);
 
-
+    const renderSwiper = () => {
+        return (
+            <Swiper
+                className="swiper-container"
+                slidesPerView={1}
+                navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
+                pagination={{ clickable: true }}
+            >
+                {files.map((file) => (
+                    <SwiperSlide className="swiper-slide" key={file.id}>
+                        <img src={file.url} alt="" />
+                    </SwiperSlide>
+                ))}
+                <div className="swiper-button-prev"></div>
+                <div className="swiper-button-next"></div>
+            </Swiper>
+        );
+    };
     return (
         <div>
             <main>
                 <div className='header'>
-                    <div className='roomItem'>
-                        <div>Название комнаты: {props.room.name}</div>
-                        <div>Кол-во спальных мест: {props.room.countBeds}</div>
-                        <div>Цена за ночь: {props.room.costNight}</div>
-                        <div className='room__btns'>
-                            <MyButton onClick={()=> ReservCheckAuth()}>Зарезервировать</MyButton>
+                    <div className='room-container'>
+                        {files.length > 0 && renderSwiper()}
+                        <div className='roomItem'>
+                            <div>Название комнаты: {props.room.name}</div>
+                            <div>Кол-во спальных мест: {props.room.countBeds}</div>
+                            <div>Цена за ночь: {props.room.costNight}</div>
+                            <div className='room__btns'>
+                                <MyButton onClick={()=> ReservCheckAuth()}>Зарезервировать</MyButton>
+                            </div>
                         </div>
-                        {files.length > 0 && (
-                            <Swiper
-                                className="swiper-container"
-                                slidesPerView={1}
-                                navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
-                                pagination={{ clickable: true }}
-                            >
-                                {files.map((file) => (
-                                    <SwiperSlide className="swiper-slide" key={file.id}>
-                                        <img src={file.url} alt="" />
-                                    </SwiperSlide>
-                                ))}
-                                <div className="swiper-button-prev"></div>
-                                <div className="swiper-button-next"></div>
-                            </Swiper>
-                        )}
                     </div>
                 </div>
             </main>
