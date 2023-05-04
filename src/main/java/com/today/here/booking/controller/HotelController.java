@@ -153,6 +153,7 @@ public class HotelController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             Hotel _hotel = hotelData.get();
+            _hotel.setCity(hotel.getCity());
             _hotel.setCountry(hotel.getCountry());
             _hotel.setDescription(hotel.getDescription());
             _hotel.setHouseNumber(hotel.getHouseNumber());
