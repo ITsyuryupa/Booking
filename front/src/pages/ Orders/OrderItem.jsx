@@ -30,7 +30,7 @@ const OrderItem = ({...props}) => {
                         <strong>Дата выезда: {props.reservation.dateOut}</strong>
                         <div>Дата рождения: {props.reservation.dateUser}</div>
                         <div>Тип комнаты: {props.reservation.room.name}</div>
-                        <div>Дата Кол-во кроватей: {props.reservation.room.countBeds}</div>
+                        <div>Кол-во спальных мест: {props.reservation.room.countBeds}</div>
                         <strong>Цена за ночь: {props.reservation.room.costNight}</strong>
                         <div className='order__btns'>
                             {todayDate< props.reservation.dateIn &&

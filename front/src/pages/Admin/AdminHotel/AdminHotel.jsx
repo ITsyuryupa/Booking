@@ -70,7 +70,7 @@ const AdminHotel = () => {
                             <tr>
                                 <th className='AdminTbody'>№</th>
                                 <th className='AdminTbody'>Название</th>
-                                <th className='AdminTbody'>Кол-во кроватей</th>
+                                <th className='AdminTbody'>Кол-во спальных мест</th>
                                 <th className='AdminTbody'>Цена за ночь</th>
                                 <th className='AdminTbody'>Кол-во</th>
                                 <th className='AdminTbody'>Изменить</th>

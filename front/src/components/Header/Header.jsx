@@ -44,7 +44,7 @@ const Header = () => {
                                 <MyButton onClick={handleClick}>Войти</MyButton>
                             </div>
                         </div>}
-                    {!isAuth && <div className={styles.Buttons}><MyButton onClick={ReghandleClick}>Зарегестрироваться</MyButton></div>}
+                    {!isAuth && <div className={styles.Buttons}><MyButton onClick={ReghandleClick}>Зарегистрироваться</MyButton></div>}
                 {isAuth && <div className={styles.Buttons}><MyButton onClick={() => dispatch(logout()) }>Выход</MyButton></div>}
             </div>
         </div>
