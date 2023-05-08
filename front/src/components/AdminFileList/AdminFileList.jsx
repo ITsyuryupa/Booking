@@ -76,17 +76,17 @@ const AdminFileList = () => {
 
     return (
         <div className='header'>
-            <div className='HeaderContainer'>
-                <div>
-                    <div className='button-container'>
-                        <div className='Buttons'>
-                            <MyButton onClick={Back}>Назад</MyButton>
-                        </div>
-                        <div className='Buttons'>
-                            <MyButton onClick={()=> setModalActive((true))}>Добавить фотографии</MyButton>
-                        </div>
-                    </div>
+            <div>
                 <h2 className='caption-container'>Фотографии</h2>
+                <div className='button-container'>
+                    <div className='Buttons'>
+                        <MyButton onClick={Back}>Назад</MyButton>
+                    </div>
+                    <div className='Buttons'>
+                        <MyButton onClick={()=> setModalActive((true))}>Добавить фотографии</MyButton>
+                    </div>
+                </div>
+            <div className='HeaderContainer'>
                     <ul className="file-list">
                         {files.map((file) => (
                             <li key={file.id} className="file-item">
