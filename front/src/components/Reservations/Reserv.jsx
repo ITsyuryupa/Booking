@@ -78,7 +78,7 @@ const Reserv = ({...props}) => {
                     <MyInput value={passportNumber} setValue={setPassportNumber} type="text" placeholder="Номер паспорта"/>
                 </div>
                 <div>
-                    <MyButton onClick={handleClick} disabled={isDisabled}>Забронирвать</MyButton>
+                    <MyButton onClick={handleClick} disabled={isDisabled}>Забронировать</MyButton>
                 </div>
             </div>
         </div>

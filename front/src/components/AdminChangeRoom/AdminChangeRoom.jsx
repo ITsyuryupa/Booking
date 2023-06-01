@@ -35,10 +35,10 @@ const AdminChangeRoom = ({onClose,...props}) => {
                         <MyInput value={count} setValue={setCount} type="text" placeholder="Кол-во комнат"/>
                     </div>
                     <div>
-                        <MyInput value={countBeds} setValue={setCountBeds} type="text" placeholder="Кол-во кроватей"/>
+                        <MyInput value={countBeds} setValue={setCountBeds} type="text" placeholder="Кол-во спальных мест"/>
                     </div>
                     <div className='room__btns'>
-                        <MyButton onClick={handleChangeRoom} >изменить</MyButton>
+                        <MyButton onClick={handleChangeRoom} >Изменить</MyButton>
                     </div>
                 </div>
             </div>

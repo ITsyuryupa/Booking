@@ -5,10 +5,10 @@
 }
 
 .room-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.6);
     display: flex;
     margin-top: 20px;
-    border: 5px solid #ACBCD3;
+    border: 5px solid #97ACCA;
     border-radius: 10px;
     align-items: flex-start;
     min-width: 1024px;
@@ -32,6 +32,7 @@
     display: flex;
 }
 body {
-    background: linear-gradient(110.34deg, #BCCDE5 2.76%, #588DCA 128.27%);
+    /*background: linear-gradient(110.34deg, #BCCDE5 2.76%, #588DCA 128.27%);*/
+    background-color: #ACBCD3;
 }
 

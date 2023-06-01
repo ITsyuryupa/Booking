@@ -13,7 +13,7 @@ export const registration = async (fullName, phone, email, password) => {
             email,
             password
         })
-        alert("Вы успешно зарегестрировались")
+        alert("Вы успешно зарегистрировались")
 
         return true;
     } catch (e) {
@@ -24,7 +24,7 @@ export const registration = async (fullName, phone, email, password) => {
                 alert("Сервер недоступен")
         }
         else{
-            alert("Регисртрация не удалась")
+            alert("Регистрация не удалась")
         }
         return false;
     }
@@ -99,7 +99,7 @@ export const reservation = async (dateIn, dateOut, room, user, dateUser, passpor
             passportSeries,
             passportNumber
         })
-        alert("Вы успешно забранировали номер")
+        alert("Вы успешно забронировали номер")
         return true;
     } catch (e) {
         alert("Произошла ошибка, попробуйте позже")
@@ -139,7 +139,7 @@ export const UpdateHotel = async (id, name, country, city, street, houseNumber, 
             email,
             coordinates
         })
-        alert("Вы успешно обновили данные о отеле")
+        alert("Вы успешно обновили данные об отеле")
         return true;
     } catch (e) {
         alert("Произошла ошибка, попробуйте позже")

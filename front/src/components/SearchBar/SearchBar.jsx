@@ -29,7 +29,7 @@ const SearchBar = () => {
             navigate(`/search/${name}`)}
         }
         else {
-            alert("Сначала выберте даты поездки")}
+            alert("Сначала выберете даты поездки")}
     }
     return (
         <div>

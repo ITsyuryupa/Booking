@@ -26,7 +26,7 @@ const AdminChangeHotel = ({...props}) => {
     return (
         <div>
             <div>
-                <text>Добавление отеля</text>
+                <text>Изменение отеля</text>
                 <div>
                     <MyInput value={name} setValue={setName} type="text" placeholder="Название"/>
                 </div>

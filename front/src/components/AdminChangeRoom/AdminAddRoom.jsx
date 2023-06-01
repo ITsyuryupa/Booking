@@ -32,7 +32,7 @@ const AdminAddRoom = ({...props}) => {
                     <MyInput value={name} setValue={setName} type="text" placeholder="Название"/>
                 </div>
                 <div>
-                    <MyInput value={countBeds} setValue={setCountBeds} type="text" placeholder="Кол-во кроватей"/>
+                    <MyInput value={countBeds} setValue={setCountBeds} type="text" placeholder="Кол-во спальных мест"/>
                 </div>
                 <div>
                     <MyInput value={costNight} setValue={setCostNight} type="text" placeholder="Цена за ночь"/>
