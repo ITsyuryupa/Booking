@@ -1,8 +1,4 @@
-<h1 align="center">Today Here </h1>
-
-<p align="center">
-      <img src="https://i.ibb.co/41MxYK7/Today-Here-Logo.png" width="700">
-</p>
+![TodayHereLogo](https://github.com/ITsyuryupa/Booking/assets/31932916/05092b06-ad55-425f-95da-beec729044a4)
 
 <p align="center">
    <img src="https://img.shields.io/badge/version-1.1.2-brightgreen" alt="Project Version">
@@ -14,11 +10,12 @@
 Сервис по бронированию отелей "Today Here". Здесь можно просматривать свои брони зарегистрированным пользователям. Бронировать отели. Также есть админка в которой можно добавлять/удалять/редактировать отели и комнаты в них.
 
 ## Preview
+
 ### UserSide
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
+https://github.com/ITsyuryupa/Booking/assets/31932916/38dde951-52d0-4d2b-8df8-b0e7e6b5db35
 
 ### AdminSide
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
+https://github.com/ITsyuryupa/Booking/assets/31932916/c0df19c9-2c57-4de2-819c-02e2a2ac16ff
 
 ### Architecture
 ![react-spring-boot-postgresql-crud-example-rest-api-architecture](https://github.com/ITsyuryupa/Booking/assets/31932916/4d3cc64c-4e22-45a8-a250-6df7abed4a5b)
