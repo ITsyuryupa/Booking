@@ -1,4 +1,4 @@
-![TodayHereLogo](https://github.com/ITsyuryupa/Booking/assets/31932916/05092b06-ad55-425f-95da-beec729044a4)
+![TodayHereLogo](https://github.com/ITsyuryupa/Booking/assets/31932916/ffec75e7-15be-4492-a68e-9ed2760babe9)
 
 <p align="center">
    <img src="https://img.shields.io/badge/version-1.1.2-brightgreen" alt="Project Version">
@@ -21,10 +21,11 @@
 ## Preview
 
 ### UserSide
-https://github.com/ITsyuryupa/Booking/assets/31932916/38dde951-52d0-4d2b-8df8-b0e7e6b5db35
+https://github.com/ITsyuryupa/Booking/assets/31932916/68bc0922-c32b-4f1e-ac10-d8bb58194d95
 
 ### AdminSide
-https://github.com/ITsyuryupa/Booking/assets/31932916/c0df19c9-2c57-4de2-819c-02e2a2ac16ff
+https://github.com/ITsyuryupa/Booking/assets/31932916/02aa76ac-67bc-4185-b645-a1cb7dfa5a4e
+
 
 ### Architecture
 ![react-spring-boot-postgresql-crud-example-rest-api-architecture](https://github.com/ITsyuryupa/Booking/assets/31932916/4d3cc64c-4e22-45a8-a250-6df7abed4a5b)
