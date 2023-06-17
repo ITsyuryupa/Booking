@@ -28,7 +28,7 @@ https://github.com/ITsyuryupa/Booking/assets/31932916/02aa76ac-67bc-4185-b645-a1
 
 
 ### Architecture
-![react-spring-boot-postgresql-crud-example-rest-api-architecture](https://github.com/ITsyuryupa/Booking/assets/31932916/4d3cc64c-4e22-45a8-a250-6df7abed4a5b)
+![react-spring-boot-postgresql-crud-example-rest-api-architecture](https://github.com/ITsyuryupa/Booking/assets/31932916/a81a6e0f-f876-428b-893c-33ffaf66df70)
 
 ## Documentation
 ### Run
